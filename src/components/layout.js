@@ -5,18 +5,16 @@ import { useDispatch } from 'react-redux'
 import { authActions } from '@/redux/auth/auth.reducer'
 import { useEffect } from 'react'
 const inter = Inter({ subsets: ['latin'] })
-const Layout = (props, {children}) => {
+const Layout = (props) => {
     const dispatch = useDispatch()
-
     const {city, user} = props;
-
     useEffect(() => {
         dispatch(authActions.checkAndLoadInitialAuth())
     }, [])
   return (
     <main className={inter.className}>
      <Header  city={city} user={user}/>
-        {children}
+        {props.children}
      <Footer/>
     </main>
   )
