@@ -8,12 +8,14 @@ import OTPInput from 'react-otp-input'
 import { useDispatch, useSelector } from 'react-redux'
 
 
-const MobileOtp = () => {
+const MobileOtp = (props) => {
     const dispatch = useDispatch()
     const [otp, setOtp] = useState('');
     const auth = useSelector(getAuthData)
+    
     const handleSubmitOtp = () => {
         // put validations for otp
+
         const mobile_number = auth.userMobile
         if(props.verify_type == 'login'){
             dispatch(authActions.verifyLogin({mobile_number, otp}))
@@ -38,8 +40,8 @@ const MobileOtp = () => {
             <p htmlFor="mobile" className="text-gray-800 block mb-4 text-[15px]">Enter OTP</p>
             <p className='text-gray-500 block mb-6 text-[15px]'>We’ve sent an OTP on <span className='text-gray-900 tracking-wider font-semibold'>9625785318</span> </p>
             <div className='otpInput'>
-            <OTPInput value={''}
-                       onChange={'setOtp'}
+            <OTPInput value={otp}
+                       onChange={setOtp}
                       numInputs={4}
                       renderInput={(props) => <input  {...props} required/>}/>
             

@@ -31,10 +31,12 @@ const Hero = () => {
               <Image
                 src={"/img/apple.png"}
                 alt="apple-laptop"
-                width={400}
-                height={300}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{width:"auto", height:"auto"}}
                 className="img-fluid"
-                style={{ width: "75%" }}
+                priority
               />
             </div>
             <div className="caption h-24 w-1/2 flex justify-start items-center flex-col">
@@ -61,10 +63,12 @@ const Hero = () => {
               <Image
                 src={"/img/apple2.png"}
                 alt="apple-laptop"
-                width={400}
-                height={300}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{width:"auto", height:"auto"}}
                 className="img-fluid"
-                style={{ width: "75%" }}
+                priority
               />
             </div>
             <div className="caption h-24 w-1/2 flex justify-start items-center flex-col">
@@ -91,10 +95,12 @@ const Hero = () => {
               <Image
                 src={"/img/apple3.png"}
                 alt="apple-laptop"
-                width={400}
-                height={300}
-                className="img-fluid"
-                style={{ width: "75%" }}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{width:"auto", height:"auto"}}
+                className="img-fluid"                
+                priority
               />
             </div>
             <div className="caption h-24 w-1/2 flex justify-start items-center flex-col">

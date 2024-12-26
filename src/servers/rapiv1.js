@@ -207,6 +207,7 @@ export const checkPincodeServiceability = async (to_pincode)=>{
 // auth 
 
 export const getHeadersWithAuth = (token) => {
+    console.log(token)
     return {
         headers: {
             ...config_urlencoded.headers,
@@ -215,15 +216,13 @@ export const getHeadersWithAuth = (token) => {
     }
 }
 
-export const loginSendOtp = async (mobile_number) => {
-    console.log(mobile_number)
+export const loginSendOtp = async (mobile_number) => {   
     try{
         const res = await axios.post(process.env.NEXT_PUBLIC_RAPIV2_BASE_URL+'/login/send-otp', {
             mobile_number
-        }, config_urlencoded)
-        console.log(res)
+        }, config_urlencoded)        
         if(res.data.success){
-            return createResponse(200,res.data.message??'success', res.data )
+            return createResponse(true, 200,res.data.message??'success', res.data )
         }
         
         return create400Response(res)
@@ -233,6 +232,7 @@ export const loginSendOtp = async (mobile_number) => {
 }
 
 export const loginVerifyOtp = async (mobile_number, otp) => {
+    
     try{
         const res = await axios.post(process.env.NEXT_PUBLIC_RAPIV2_BASE_URL+'/login/verify-otp', {
             mobile_number,

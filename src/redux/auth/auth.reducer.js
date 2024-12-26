@@ -18,8 +18,8 @@ const INITIAL_STATE = {
     userMobile:null
 }
 
-const loginOtp = createAsyncThunk('loginOtp',
-        async (mobile_number, thukApi) => {
+const loginOtp = createAsyncThunk('loginOtp',      
+        async (mobile_number, thukApi) => {            
             return await loginSendOtp(mobile_number)
         }
     )
@@ -51,7 +51,7 @@ const checkAndLoadInitialAuth = createAsyncThunk('loadInitialAuth', async (paylo
     if(localAuth){
         console.log(localAuth)
         const res = await refreshBearerToken(localAuth.refreshToken)
-        if(res.status == 200){
+        if(res.status_code == 200){
             thunkApi.dispatch(authActions.setCurrentUser({
                 currentUser:localAuth.currentUser,
                 token:res.data.tokens.token,
@@ -80,7 +80,7 @@ const authSlice = createSlice({
     initialState: INITIAL_STATE,
     reducers: {
             setCurrentUser(state,action){
-                //console.log(action)
+               
                 state.currentUser = action.payload.currentUser
                 state.token = action.payload.token
                 state.refreshToken = action.payload.refreshToken
@@ -113,7 +113,7 @@ const authSlice = createSlice({
     },
     extraReducers: (builder)=> {
         builder.addCase(loginOtp.fulfilled, (state, action)=>{
-            if(action.payload.status == 200){
+            if(action.payload.status_code == 200){
                 state.openedLoginSidebar = 'verifyLogin'
                 state.errorMessage = null
             }else{
@@ -129,7 +129,7 @@ const authSlice = createSlice({
             state.userMobile = action.meta.arg
         })
         .addCase(verifyLogin.fulfilled, (state, action)=>{
-            if(action.payload.status == 200){
+            if(action.payload.status_code == 200){
                 if(action.payload.data.profile){
                     state.currentUser = action.payload.data.profile
                     state.token = action.payload.data.tokens.token
@@ -145,7 +145,7 @@ const authSlice = createSlice({
             }
         })
         .addCase(signupOtp.fulfilled, (state, action)=>{
-            if(action.payload.status == 200){
+            if(action.payload.status_code == 200){
                 state.openedLoginSidebar = 'verifySignup'
                 state.errorMessage = null
             }else{
@@ -155,7 +155,7 @@ const authSlice = createSlice({
             state.userMobile = action.meta.arg.mobile_number
         })
         .addCase(verifySignup.fulfilled, (state, action)=>{
-            if(action.payload.status == 200 && action.payload.data.profile){
+            if(action.payload.status_code == 200 && action.payload.data.profile){
                 state.currentUser = action.payload.data.profile
                 state.token = action.payload.data.tokens.token
                 state.refreshToken = action.payload.data.tokens.refresh_token
@@ -165,7 +165,7 @@ const authSlice = createSlice({
                 state.errorMessage = action.payload.message
             }
         }).addCase(refreshTokens.fulfilled, (state, action)=>{
-            if(action.payload.status == 200 && action.payload.data.tokens){
+            if(action.payload.status_code == 200 && action.payload.data.tokens){
                 state.token = action.payload.data.tokens.token
                 state.refreshToken = action.payload.data.tokens.refresh_token
                 localStorage.setItem("auth", JSON.stringify(state))

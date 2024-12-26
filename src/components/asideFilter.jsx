@@ -16,7 +16,7 @@ const AsideFilter = () => {
         }
         getFiltersResp()
     },[])
-   console.log(filters)
+//   console.log(filters)
   return (
     <>
     <div className="w-full bg-gray-100 rounded">

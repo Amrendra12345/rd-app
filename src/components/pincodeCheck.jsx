@@ -22,7 +22,7 @@ const PincodeCheck = ({pincodeCheckCallback}) => {
         let pincode = pinRef.current.value
         if(pincode.length==6){
             const pincode_result = await checkPincodeServiceability(pincode)
-            console.log(pincode_result)
+           // console.log(pincode_result)
             if(pincode_result.status_code == 200){
                 if(pincode_result.message=='pincode_servicable'){
                     pincodeCheckCallback(true)

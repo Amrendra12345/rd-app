@@ -5,7 +5,7 @@ import { refreshAndRepeat } from "@/servers/helpers";
 
 export const getOrdersList = createAsyncThunk('getOrdersList', async (payload, thunkApi)=>{
     let resp = await purchaseOrdersList(thunkApi.getState().auth.token??'', payload)
-    if(resp.status == 200){
+    if(resp.status_code == 200){
         return resp
     }
     else {
@@ -18,7 +18,8 @@ export const getOrdersList = createAsyncThunk('getOrdersList', async (payload, t
 
 export const getOrderData = createAsyncThunk('orderDetails', async(payload, thunkApi) => {
     let resp = await getOrderDetails(thunkApi.getState().auth.token??'', payload)
-    if(resp.status == 200){
+
+    if(resp.status_code == 200){
         return resp
     }
     else {
