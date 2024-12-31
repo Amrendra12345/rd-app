@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import 'swiper/css';
+import "swiper/css";
 import Link from "next/link";
-
 
 const Hero = () => {
   return (
@@ -31,22 +30,22 @@ const Hero = () => {
               <Image
                 src={"/img/apple.png"}
                 alt="apple-laptop"
-                width={0}
-                height={0}
                 sizes="100vw"
-                style={{width:"auto", height:"auto"}}
+                width={400}
+                height={300}
                 className="img-fluid"
                 priority
               />
             </div>
-            <div className="caption h-24 w-1/2 flex justify-start items-center flex-col">
+            <div className="caption h-auto w-1/2 flex justify-start items-center flex-col">
               <h1 className="text-4xl font-bold uppercase text-slate-800">
                 Best Refurbished electronics
               </h1>
               <h2 className="text-3xl font-bold uppercase text-slate-800 my-4">
                 laptop and mobile
               </h2>
-              <Link href={"/product"}
+              <Link
+                href={"/product"}
                 className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
               >
                 Shop Now
@@ -63,22 +62,22 @@ const Hero = () => {
               <Image
                 src={"/img/apple2.png"}
                 alt="apple-laptop"
-                width={0}
-                height={0}
                 sizes="100vw"
-                style={{width:"auto", height:"auto"}}
+                width={400}
+                height={300}
                 className="img-fluid"
                 priority
               />
             </div>
-            <div className="caption h-24 w-1/2 flex justify-start items-center flex-col">
+            <div className="caption h-auto w-1/2 flex justify-start items-center flex-col">
               <h1 className="text-4xl font-bold uppercase text-slate-800">
                 Best Refurbished electronics
               </h1>
               <h2 className="text-3xl font-bold uppercase text-slate-800 my-4">
                 laptop and mobile
               </h2>
-              <Link href={"/product"}
+              <Link
+                href={"/product"}
                 className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
               >
                 Shop Now
@@ -95,22 +94,22 @@ const Hero = () => {
               <Image
                 src={"/img/apple3.png"}
                 alt="apple-laptop"
-                width={0}
-                height={0}
                 sizes="100vw"
-                style={{width:"auto", height:"auto"}}
-                className="img-fluid"                
-                priority
+                width={400}
+                height={300}
+                className="img-fluid"
               />
             </div>
-            <div className="caption h-24 w-1/2 flex justify-start items-center flex-col">
+            <div className="caption h-auto w-1/2 flex justify-start items-center flex-col">
               <h1 className="text-4xl font-bold uppercase text-slate-800">
                 Best Refurbished electronics
               </h1>
               <h2 className="text-3xl font-bold uppercase text-slate-800 my-4">
                 laptop and mobile
               </h2>
-              <Link href={"/product"} className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
+              <Link
+                href={"/product"}
+                className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
               >
                 Shop Now
               </Link>

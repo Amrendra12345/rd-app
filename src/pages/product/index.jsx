@@ -1,16 +1,17 @@
-import Breadcrumd from "@/components/breadcrumd";
-import { createSlug, getCommonData, getProductsList } from "@/servers/rapiv1";
-import { withSessionSsr } from "@/servers/session";
-import Image from "next/image";
-import { FaRupeeSign, FaSlidersH, FaStar } from "react-icons/fa";
-import { BsCart2, BsEye, BsLaptop } from "react-icons/bs";
-import { FiHeart } from "react-icons/fi";
 import AsideFilter from "@/components/asideFilter";
+import Breadcrumd from "@/components/breadcrumd";
+import { getCommonData } from "@/servers/lib-rd/ravi1";
+import { withSessionSsr } from "@/servers/lib-rd/session";
+import { createSlug, getProductsList } from "@/servers/lib-reown/lib";
+import Image from "next/image";
 import Link from "next/link";
+import { BsCart2, BsEye } from "react-icons/bs";
+import { FaRupeeSign, FaStar } from "react-icons/fa";
+import { FiHeart } from "react-icons/fi";
 
 const ProductList = (props) => {
   const { products } = props;
- //  console.log(products)
+
   return (
     <>
       <Breadcrumd />
@@ -21,40 +22,45 @@ const ProductList = (props) => {
           </div>
           <div className="w-full">
             <h1 className="text-xl font-semibold">Product </h1>
-            <div className="mt-4 grid grid-cols-3 gap-8">
+            <div className="mt-4 grid grid-cols-4 gap-8">
               {Array.isArray(products.models) &&
                 products.models.map((el) => {
                   return (
-                    <div className="product-img" key={el.product_sku_id}>                       
-                        <Link href={`/product/${createSlug(el.product_title,el.product_sku_id)}`}>
-                      <div className="relative p-4 bg-gray-100 h-[300px]">
-                        <div className="w-[340px] h-[200px] relative">
-                          <Image
-                            src={el.product_icon}
-                            sizes="30vw"
-                            fill
-                            style={{
-                              objectFit: "contain",
-                              mixBlendMode: "multiply",
-                            }}
-                            className="img-fluid"
-                            alt="img"
-                            priority
-                          />
+                    <div className="product-img" key={el.product_sku_id}>
+                      <Link
+                        href={`/product/${createSlug(
+                          el.product_title,
+                          el.product_sku_id
+                        )}`}
+                      >
+                        <div className="relative p-4 bg-gray-100 h-[300px]">
+                          <div className="w-[275x] h-[200px] relative">
+                            <Image
+                              src={el.product_icon}
+                              sizes="30vw"
+                              fill
+                              style={{
+                                objectFit: "contain",
+                                mixBlendMode: "multiply",
+                              }}
+                              className="img-fluid"
+                              alt="img"
+                              priority
+                            />
+                          </div>
+                          <div className="flex justify-center items-center gap-4 caption_product">
+                            <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                              <BsCart2 className="text-white text-xl" />
+                            </span>
+                            <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                              <BsEye className="text-white text-xl" />
+                            </span>
+                            <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                              <FiHeart className="text-white text-xl" />
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-center items-center gap-4 caption_product">
-                          <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
-                            <BsCart2 className="text-white text-xl" />
-                          </span>
-                          <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
-                            <BsEye className="text-white text-xl" />
-                          </span>
-                          <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
-                            <FiHeart className="text-white text-xl" />
-                          </span>
-                        </div>
-                      </div>
-                       </Link>
+                      </Link>
                       <div className="flex justify-center items-center gap-2 my-4">
                         <FaStar className="text-gray-200" />
                         <FaStar className="text-gray-200" />
