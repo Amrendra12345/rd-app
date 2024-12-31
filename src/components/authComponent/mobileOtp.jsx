@@ -5,6 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import OTPInput from "react-otp-input";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "motion/react";
 
 const MobileOtp = (props) => {
   const dispatch = useDispatch();
@@ -37,13 +38,43 @@ const MobileOtp = (props) => {
           <IoCloseSharp />
         </div>
 
-        <h4 className="text-2xl uppercase font-bold text-black/30 pl-6 pb-2">
+        <motion.h4
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+            delay: 0.2,
+          }}
+          className="text-2xl uppercase font-bold text-black/30 pl-6 pb-2"
+        >
           OTP{" "}
-        </h4>
-        <div className="flex justify-center items-center text-teal-700 text-3xl pt-5 pb-1">
+        </motion.h4>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+            delay: 0.4,
+          }}
+          className="flex justify-center items-center text-teal-700 text-3xl pt-5 pb-1"
+        >
           <FaRegUserCircle className="bg-white" />
-        </div>
-        <div className="p-6 border border-r-0 border-l-0">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+            delay: 0.6,
+          }}
+          className="p-6 border border-r-0 border-l-0"
+        >
           <p htmlFor="mobile" className="text-gray-800 block mb-4 text-[15px]">
             Enter OTP
           </p>
@@ -73,7 +104,7 @@ const MobileOtp = (props) => {
               Continue
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

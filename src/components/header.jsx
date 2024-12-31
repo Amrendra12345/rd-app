@@ -17,15 +17,32 @@ import { useRouter } from "next/router";
 const Header = () => {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+  const [stickyClass, setStickyClass] = useState("relative");
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
   const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     router.events.on("routeChangeStart", (url) => {
-  //       dispatch(authActions.closeSidebar());
-  //     });
-  //   });
+  useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+    return () => {
+      window.removeEventListener("scroll", stickNavbar);
+    };
+  }, []);
+
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 100
+        ? setStickyClass("hsticky")
+        : setStickyClass("relative");
+    }
+  };
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", (url) => {
+      dispatch(authActions.closeSidebar());
+    });
+  });
 
   useEffect(() => {
     if (auth && auth.currentUser && auth.authLoaded) {
@@ -56,7 +73,7 @@ const Header = () => {
   };
   return (
     <>
-      <header className="py-1">
+      <header className={`${stickyClass} py-1`}>
         <div className="container">
           <nav className="flex justify-between items-center">
             <Link href={"/"}>
@@ -97,10 +114,14 @@ const Header = () => {
                       <div className="absolute top-[135%] right-0 flex w-40 border border-gray-200 shadow-xl z-20 bg-white rounded">
                         <ul className="w-full">
                           <li className="font-normal border-b border-b-gray-200 px-4 py-2 hover:bg-gray-100 transition-all">
-                            <Link href={"/profile"}>My Profile</Link>
+                            <Link href={"/profile"} className="block">
+                              My Profile
+                            </Link>
                           </li>
                           <li className="font-normal border-b border-b-gray-200 px-4 py-2 hover:bg-gray-100 transition-all">
-                            <Link href={"/orders"}>My Order</Link>
+                            <Link href={"/orders"} className="block">
+                              My Order
+                            </Link>
                           </li>
                           <li
                             className="font-normal border-b border-b-gray-200 px-4 py-2 hover:bg-gray-100 transition-all"

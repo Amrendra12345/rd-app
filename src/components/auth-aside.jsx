@@ -4,12 +4,23 @@ import Link from "next/link";
 import React from "react";
 import { TfiUser } from "react-icons/tfi";
 import { useSelector } from "react-redux";
+import { motion } from "motion/react";
 
 const AuthAside = () => {
   const auth = useSelector(getAuthData);
   return (
     <>
-      <div className="w-full justify-start items-center flex gap-4 px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          delay: 0.2,
+        }}
+        className="w-full justify-start items-center flex gap-4 px-4"
+      >
         <div className="w-24 h-24 rounded-full overflow-hidden p-2 border-2 border-dashed border-blue-500 justify-center items-center flex relative">
           {auth.currentUser?.profile_pic ? (
             <Image
@@ -30,8 +41,18 @@ const AuthAside = () => {
             {auth.currentUser?.fullname}
           </p>
         </div>
-      </div>
-      <div className="profile-content border-t mt-8">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+          delay: 0.4,
+        }}
+        className="profile-content border-t mt-8"
+      >
         <ul>
           <li>
             <Link href={"/orders"}>
@@ -51,7 +72,7 @@ const AuthAside = () => {
             Sign out
           </li>
         </ul>
-      </div>
+      </motion.div>
     </>
   );
 };
