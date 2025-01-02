@@ -6,6 +6,7 @@ import { useState } from "react";
 import { TfiUser } from "react-icons/tfi";
 import { useSelector } from "react-redux";
 import { motion } from "motion/react";
+import axios from "axios";
 
 const Profile = () => {
   const auth = useSelector(getAuthData);
@@ -20,10 +21,14 @@ const Profile = () => {
     fname: "",
     lastname: "",
   });
+  const updatedata = async () => {
+    console.log("Bearer " + auth.token);
+  };
   return (
     <>
       <Breadcrumd pageName="Profile" />
       <div className="container my-14">
+        <button onClick={updatedata}>Update</button>
         <div className="flex w-full gap-5">
           <div className="w-[375px] border border-gray-400 rounded pt-8 pb-1 flex-shrink-0">
             <AuthAside />
