@@ -4,13 +4,14 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { FaPlus, FaRubleSign, FaRupeeSign } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
+import { cartActions } from "@/redux/cart/cart.reducer";
 const CartSidebar = (props) => {
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
-  //console.log(cart.cartTotal);
+  const dispatch = useDispatch();
 
   const handleCartCloseClick = () => {
     props.cartClose();
@@ -21,6 +22,10 @@ const CartSidebar = (props) => {
       document.body.style.overflowY = "scroll";
     };
   }, []);
+  //removeCart;
+  const removeCartItems = (e, id) => {
+    dispatch(cartActions.removeCart(id));
+  };
   return (
     <div className="fixed w-full h-full bg-black/40 top-0 bottom-0 left-0 right-0 z-[999]">
       <div className="w-[400px] bg-white h-dvh absolute right-0 top-0 bottom-0 shadow-md flex flex-col">
@@ -88,7 +93,12 @@ const CartSidebar = (props) => {
                         <FaPlus />{" "}
                       </span>
                     </div>
-                    <div className="flex justify-center text-red-400">
+                    <div
+                      className="flex justify-center text-red-400"
+                      onClick={(e) =>
+                        removeCartItems(e, cartItem.product_sku_id)
+                      }
+                    >
                       <FaRegTrashAlt className="cursor-pointer" />
                     </div>
                   </div>

@@ -6,7 +6,7 @@ import { getCommonData } from "@/servers/lib-rd/ravi1";
 import { withSessionSsr } from "@/servers/lib-rd/session";
 import { getLaptopDetails } from "@/servers/lib-reown/lib";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRupeeSign, FaStar } from "react-icons/fa";
 import { PiVanThin } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,7 @@ const ProductList = (props) => {
   const cart = useSelector(getCartData);
   const [customRam, setCustomRam] = useState(null);
   const [customHdd, setCustomHdd] = useState(null);
+  const [isIncludeCart, setIsIncludeCart] = useState([]);
   const dispatch = useDispatch();
   const [pincodeEnabled, setPincodeEnabled] = useState(false);
 
@@ -114,9 +115,9 @@ const ProductList = (props) => {
               {props.productDetails.product.ram}
             </p>
             <p className="text-green-700 flex justify-start items-center font-bold gap-1 mt-2">
-              <sapn className="text-[14px]">
+              <span className="text-[14px]">
                 <FaRupeeSign />
-              </sapn>
+              </span>
               <span className="text-[18px]">
                 {props.productDetails.product.sell_price}.00{" "}
               </span>
@@ -139,13 +140,19 @@ const ProductList = (props) => {
             </div>
 
             <div className="mt-8 flex gap-4">
-              <button
-                type="button"
-                className="bg-teal-600 w-[250px] rounded py-3 px-10 text-white uppercase"
-                onClick={handleAddtoCart}
-              >
-                Add to cart
-              </button>
+              {!cart?.cartItems.includes(
+                props.productDetails.product.product_sku_id
+              ) ? (
+                <button
+                  type="button"
+                  className="bg-teal-600 w-[250px] rounded py-3 px-10 text-white uppercase"
+                  onClick={handleAddtoCart}
+                >
+                  Add to cart
+                </button>
+              ) : (
+                ""
+              )}
               <button
                 type="button"
                 className="bg-orange-700 w-[250px] rounded py-3 px-10 text-white uppercase"

@@ -73,9 +73,9 @@ const ProductDeatails = (props) => {
             {props.productDetails.product.ram}
           </p>
           <p className="text-green-700 flex justify-start items-center font-bold gap-1 mt-2">
-            <sapn className="text-[14px]">
+            <span className="text-[14px]">
               <FaRupeeSign />
-            </sapn>
+            </span>
             <span className="text-[18px]">
               {props.productDetails.product.sell_price}.00{" "}
             </span>
