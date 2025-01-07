@@ -1,15 +1,27 @@
 import Breadcrumd from "@/components/breadcrumd";
-import CartAddress from "@/components/carts/cartAddress";
+import CartDetails from "@/components/carts/CartDetails";
+import { getAuthData } from "@/redux/auth/auth.selector";
 import { getCommonData } from "@/servers/lib-rd/ravi1";
 import { withSessionSsr } from "@/servers/lib-rd/session";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Cart = (props) => {
+  const auth = useSelector(getAuthData);
+  const router = useRouter();
+
+  if (auth.authLoaded) {
+    if (!auth || !auth.currentUser) {
+      router.push("/");
+      return null;
+    }
+  }
+
   return (
     <>
       <Breadcrumd pageName="Cart" />
-
-      <CartAddress {...props} />
+      <CartDetails {...props} />
     </>
   );
 };

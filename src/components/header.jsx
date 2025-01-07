@@ -13,6 +13,7 @@ import Login from "./authComponent/login";
 import SignUp from "./authComponent/signUp";
 import MobileOtp from "./authComponent/mobileOtp";
 import { useRouter } from "next/router";
+import CartSidebar from "./cartSidebar";
 
 const Header = () => {
   const router = useRouter();
@@ -21,6 +22,9 @@ const Header = () => {
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
   const dispatch = useDispatch();
+  const [isCartSidebar, setIsCartSidebar] = useState(false);
+  const handleCartOpen = () => setIsCartSidebar(true);
+  const handleCartClose = () => setIsCartSidebar(false);
 
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
@@ -71,6 +75,9 @@ const Header = () => {
     dispatch(authActions.logout());
     router.push("/");
   };
+  const handleCartShow = () => {
+    handleCartOpen();
+  };
   return (
     <>
       <header className={`${stickyClass} py-1`}>
@@ -97,16 +104,13 @@ const Header = () => {
                 </li>
               ) : (
                 <>
-                  <li>
-                    <Link
-                      href={"/cart"}
-                      className="text-gray-900 text-xl flex gap-2 justify-center items-center relative"
-                    >
+                  <li onClick={handleCartShow}>
+                    <p className="text-gray-900 text-xl flex gap-2 justify-center items-center relative">
                       <span className="absolute top-[-14px] left-[-16px] w-[18px] h-[18px] shadow-md border border-red-600 rounded-full bg-red-500 text-white text-[12px] flex justify-center items-center">
                         {cart.cartCount}
                       </span>
                       <PiShoppingCartSimpleLight />
-                    </Link>
+                    </p>
                   </li>
                   <li
                     className="flex justify-end items-center gap-2 text-gray-900 relative text-[14px]"
@@ -143,6 +147,9 @@ const Header = () => {
         </div>
       </header>
       {displayLoginSidebar()}
+      {isCartSidebar && (
+        <CartSidebar cartOpen={handleCartOpen} cartClose={handleCartClose} />
+      )}
     </>
   );
 };

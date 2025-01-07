@@ -1,6 +1,7 @@
 import AsideFilter from "@/components/asideFilter";
 import Breadcrumd from "@/components/breadcrumd";
 import QuickView from "@/components/carts/QuickView";
+import CartSidebar from "@/components/cartSidebar";
 import { authActions } from "@/redux/auth/auth.reducer";
 import { getAuthData } from "@/redux/auth/auth.selector";
 import { cartActions } from "@/redux/cart/cart.reducer";
@@ -29,6 +30,7 @@ const ProductList = (props) => {
   const auth = useSelector(getAuthData);
   const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
+
   // console.log(cart);
   const handleCartIcon = (e, id) => {
     e.preventDefault();

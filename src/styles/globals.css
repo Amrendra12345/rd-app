@@ -187,3 +187,40 @@
   height: 340px;
   overflow-y: scroll;
 }
+
+.sidebarCart {
+  height: 100vh;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-bottom: 16px;
+  overflow-y: auto;
+}
+
+.sidebarCart::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.sidebarCart::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.sidebarCart::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.sidebarCart::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.sidebarCart_para {
+  width: calc(100% - 80px);
+  overflow-y: hidden;
+}
+.sidebarCart_para p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
