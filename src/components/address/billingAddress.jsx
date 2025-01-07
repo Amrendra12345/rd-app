@@ -15,7 +15,7 @@ const BillingAddress = () => {
       dispatch(profileActions.getProfileFullDetails());
     }
   }, [auth]);
-  console.log(billingAddress);
+  // console.log(billingAddress);
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}

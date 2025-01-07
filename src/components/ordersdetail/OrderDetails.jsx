@@ -19,7 +19,7 @@ const OrderDetails = () => {
       dispatch(getOrdersList())
         .unwrap()
         .then((response) => {
-          console.log(response.data.orders);
+          // console.log(response.data.orders);
           if (response.status == 200) {
             setOrdersList(response.data.orders);
           }

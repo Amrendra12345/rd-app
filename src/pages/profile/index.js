@@ -22,7 +22,7 @@ const Profile = () => {
     lastname: "",
   });
   const updatedata = async () => {
-    console.log("Bearer " + auth.token);
+    // console.log("Bearer " + auth.token);
   };
   return (
     <>

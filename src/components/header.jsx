@@ -100,9 +100,12 @@ const Header = () => {
                   <li>
                     <Link
                       href={"/cart"}
-                      className="text-gray-900 text-xl flex gap-2 justify-center items-center"
+                      className="text-gray-900 text-xl flex gap-2 justify-center items-center relative"
                     >
-                      <PiShoppingCartSimpleLight />{" "}
+                      <span className="absolute top-[-14px] left-[-16px] w-[18px] h-[18px] shadow-md border border-red-600 rounded-full bg-red-500 text-white text-[12px] flex justify-center items-center">
+                        {cart.cartCount}
+                      </span>
+                      <PiShoppingCartSimpleLight />
                     </Link>
                   </li>
                   <li

@@ -46,7 +46,7 @@ const ProductList = (props) => {
         //handle success or errors
       });
   };
-  console.log(cart.cartCount);
+
   return (
     <>
       <div className="container mt-4">

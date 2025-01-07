@@ -201,6 +201,7 @@ export const getFilters = async () => {
 };
 
 export const getLaptopDetails = async (product_sku_id) => {
+  //console.log(product_sku_id);
   try {
     const res = await axios.post(
       process.env.NEXT_PUBLIC_RAPIV2_BASE_URL + "/reown/models/detail",

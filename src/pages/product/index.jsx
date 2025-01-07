@@ -1,16 +1,58 @@
 import AsideFilter from "@/components/asideFilter";
 import Breadcrumd from "@/components/breadcrumd";
+import QuickView from "@/components/carts/QuickView";
+import { authActions } from "@/redux/auth/auth.reducer";
+import { getAuthData } from "@/redux/auth/auth.selector";
+import { cartActions } from "@/redux/cart/cart.reducer";
+import { getCartData } from "@/redux/cart/cart.selector";
 import { getCommonData } from "@/servers/lib-rd/ravi1";
 import { withSessionSsr } from "@/servers/lib-rd/session";
-import { createSlug, getProductsList } from "@/servers/lib-reown/lib";
+import { config_urlencoded } from "@/servers/lib-reown/constants";
+import {
+  createSlug,
+  getLaptopDetails,
+  getProductsList,
+} from "@/servers/lib-reown/lib";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { BsCart2, BsEye } from "react-icons/bs";
 import { FaRupeeSign, FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductList = (props) => {
   const { products } = props;
+  const [isActive, setIsctive] = useState(false);
+  const cart = useSelector(getCartData);
+  const auth = useSelector(getAuthData);
+  const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
+  // console.log(cart);
+  const handleCartIcon = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (auth && auth.currentUser === null) {
+      dispatch(authActions.openSidebar("login"));
+    }
+    dispatch(
+      cartActions.addToCart({
+        product_sku_id: id,
+        quantity: 1,
+        custom_ram: null,
+        custom_hdd: null,
+      })
+    );
+  };
+  const handleQuickView = async (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsctive(true);
+    const result = await getLaptopDetails(id);
+    setProduct(result.data.product);
+  };
+  const closePopup = () => setIsctive(false);
 
   return (
     <>
@@ -49,10 +91,20 @@ const ProductList = (props) => {
                             />
                           </div>
                           <div className="flex justify-center items-center gap-4 caption_product">
-                            <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                            <span
+                              className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
+                              onClick={(e) =>
+                                handleCartIcon(e, el.product_sku_id)
+                              }
+                            >
                               <BsCart2 className="text-white text-xl" />
                             </span>
-                            <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                            <span
+                              className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
+                              onClick={(e) =>
+                                handleQuickView(e, el.product_sku_id)
+                              }
+                            >
                               <BsEye className="text-white text-xl" />
                             </span>
                             <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
@@ -84,6 +136,9 @@ const ProductList = (props) => {
           </div>
         </div>
       </div>
+      {isActive && (
+        <QuickView closePopup={closePopup} laptopDetails={product} />
+      )}
     </>
   );
 };
