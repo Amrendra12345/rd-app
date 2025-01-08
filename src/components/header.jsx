@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "@/redux/auth/auth.reducer";

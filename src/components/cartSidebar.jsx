@@ -1,19 +1,23 @@
 import { getAuthData } from "@/redux/auth/auth.selector";
 import { getCartData } from "@/redux/cart/cart.selector";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { FaPlus, FaRubleSign, FaRupeeSign } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa6";
 import { cartActions } from "@/redux/cart/cart.reducer";
+import Link from "next/link";
 const CartSidebar = (props) => {
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
   const dispatch = useDispatch();
 
   const handleCartCloseClick = () => {
+    props.cartClose();
+  };
+  const handleViewCartClick = () => {
     props.cartClose();
   };
   useEffect(() => {
@@ -121,12 +125,13 @@ const CartSidebar = (props) => {
           >
             Checkout
           </button>
-          <button
-            type="button"
-            className="bg-black py-3 px-10 w-full rounded text-white uppercase"
+          <Link
+            onClick={handleViewCartClick}
+            href={"/cart"}
+            className="bg-black py-3 px-10 w-full rounded text-white uppercase block text-center"
           >
             View cart
-          </button>
+          </Link>
         </div>
       </div>
     </div>

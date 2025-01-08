@@ -13,19 +13,19 @@ const RelatedProducts = ({ relatedProduct }) => {
         {" "}
         Related Products
       </h4>
-      <div className="grid grid-cols-4 gap-8 mt-8">
+      <div className="grid grid-cols-5 gap-8 mt-8 mb-10">
         {Array.isArray(relatedProduct) &&
           relatedProduct.map((product, index) => {
             return (
               <div className="product-img" key={index}>
-                <div className="relative p-4 bg-gray-100 h-[300px] mb-28">
+                <div className="relative p-4 bg-gray-100 h-[250px] mb-28">
                   <Link
                     href={`/product/${createSlug(
                       product.product_title,
                       product.product_sku_id
                     )}`}
                   >
-                    <div className="w-[295px] h-[250px] relative">
+                    <div className="w-[225px] h-[200px] relative">
                       <Image
                         src={product.product_icon}
                         sizes="30vw"
