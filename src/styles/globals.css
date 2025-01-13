@@ -224,3 +224,26 @@
   overflow: hidden;
   width: 100%;
 }
+
+.cart-checkout-content{
+    max-height: 250px;
+    overflow-y: auto;
+}
+.cart-checkout-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  .cart-checkout-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .cart-checkout-content::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  .cart-checkout-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

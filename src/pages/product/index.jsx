@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 const ProductList = (props) => {
   const { products } = props;
   const [isActive, setIsctive] = useState(false);
+  const [isCartAdded, setIsCartAdded] = useState(false);
   const cart = useSelector(getCartData);
   const auth = useSelector(getAuthData);
   const [product, setProduct] = useState([]);
@@ -38,14 +39,17 @@ const ProductList = (props) => {
     if (auth && auth.currentUser === null) {
       dispatch(authActions.openSidebar("login"));
     }
-    dispatch(
-      cartActions.addToCart({
-        product_sku_id: id,
-        quantity: 1,
-        custom_ram: null,
-        custom_hdd: null,
-      })
-    );
+
+    if (cart.cartItems && !cart.cartItems.includes(id)) {
+      dispatch(
+        cartActions.addToCart({
+          product_sku_id: id,
+          quantity: 1,
+          custom_ram: null,
+          custom_hdd: null,
+        })
+      );
+    }
   };
   const handleQuickView = async (e, id) => {
     e.preventDefault();
