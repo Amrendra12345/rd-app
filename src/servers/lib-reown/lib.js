@@ -1,5 +1,6 @@
 import axios from "axios";
 import { config_urlencoded } from "./constants";
+import config from "../../../postcss.config.mjs";
 
 export const createResponse = (status, message, data) => {
   return {
@@ -349,6 +350,29 @@ export const updateDeliveryAddressDetails = async (
     const res = await axios.post(
       process.env.NEXT_PUBLIC_RAPIV2_BASE_URL +
         "/reown/update-delivery-address-details",
+      data,
+      configs
+    );
+    return createResponse(200, res.data.message ?? "", res.data ?? []);
+  } catch (err) {
+    return createExceptionResponse(err);
+  }
+};
+export const updateBillingAddress = async (token, action, address) => {
+  let configs = getHeadersWithAuth(token);
+  const data = {
+    address_type: action,
+    house_no: address.house_no,
+    street_no: address.street,
+    locality: address.locality,
+    city: address.city,
+    state: address.state,
+    pincode: address.pincode,
+  };
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL +
+        "/order-place/add-update-address",
       data,
       configs
     );
