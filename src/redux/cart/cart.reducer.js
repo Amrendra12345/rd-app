@@ -26,6 +26,7 @@ const addToCart = createAsyncThunk("addToCart", async (payload, thunkApi) => {
     thunkApi.dispatch(cartActions.setPendingAction(true));
     return null;
   }
+
   let resp = await addCartApi(
     thunkApi.getState().auth.token ?? "",
     payload.product_sku_id,
@@ -42,6 +43,7 @@ const addToCart = createAsyncThunk("addToCart", async (payload, thunkApi) => {
     const cartQuantity = resp.data.cart.total_quantity;
     const cartDiscount = resp.data.cart.total_discount;
     let finalItems = [];
+
     cartItemsDetails.forEach(function (element) {
       finalItems.push(element.product_sku_id);
     });
@@ -124,6 +126,7 @@ const syncCartData = createAsyncThunk(
       const cartQuantity = resp.data.total_quantity;
       const cartDiscount = resp.data.total_discount;
       const existing = thunkApi.getState().cart.cartItems;
+
       let finalItems = [];
       cartItemsDetails.forEach(function (element) {
         if (!existing.includes(element.product_sku_id)) changes = true;
@@ -239,7 +242,6 @@ const revokeCouponAction = createAsyncThunk(
     return resp;
   }
 );
-
 const cartSlice = createSlice({
   name: "cart",
   initialState: INITIAL_STATE,

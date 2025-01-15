@@ -1,18 +1,20 @@
 import AsideFilter from "@/components/asideFilter";
 import Breadcrumd from "@/components/breadcrumd";
 import QuickView from "@/components/carts/QuickView";
-import CartSidebar from "@/components/cartSidebar";
 import { authActions } from "@/redux/auth/auth.reducer";
 import { getAuthData } from "@/redux/auth/auth.selector";
 import { cartActions } from "@/redux/cart/cart.reducer";
 import { getCartData } from "@/redux/cart/cart.selector";
+import { wishlistActions } from "@/redux/wishlist/wishlist.reducer";
+import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
 import { getCommonData } from "@/servers/lib-rd/ravi1";
 import { withSessionSsr } from "@/servers/lib-rd/session";
-import { config_urlencoded } from "@/servers/lib-reown/constants";
+
 import {
   createSlug,
   getLaptopDetails,
   getProductsList,
+  updateWishlist,
 } from "@/servers/lib-reown/lib";
 import axios from "axios";
 import Image from "next/image";
@@ -29,6 +31,7 @@ const ProductList = (props) => {
   const [isCartAdded, setIsCartAdded] = useState(false);
   const cart = useSelector(getCartData);
   const auth = useSelector(getAuthData);
+  const wishlist = useSelector(getWishlistData);
   const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
 
@@ -59,7 +62,11 @@ const ProductList = (props) => {
     setProduct(result.data.product);
   };
   const closePopup = () => setIsctive(false);
-
+  const handleWishlist = async (e, id) => {
+    e.preventDefault();
+    const res = await updateWishlist(auth.token, "add", id);
+    console.log(res.data.wishlist);
+  };
   return (
     <>
       <Breadcrumd />
@@ -113,7 +120,12 @@ const ProductList = (props) => {
                             >
                               <BsEye className="text-white text-xl" />
                             </span>
-                            <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                            <span
+                              className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
+                              onClick={(e) =>
+                                handleWishlist(e, el.product_sku_id)
+                              }
+                            >
                               <FiHeart className="text-white text-xl" />
                             </span>
                           </div>

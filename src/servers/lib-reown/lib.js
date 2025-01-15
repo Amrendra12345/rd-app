@@ -465,3 +465,34 @@ export const getOrderDetails = async (token, order_id) => {
     return createExceptionResponse(err);
   }
 };
+
+export const updateWishlist = async (token, action, product_sku_id) => {
+  let configs = getHeadersWithAuth(token);
+  const data = {
+    action,
+    product_sku_id,
+  };
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL + "/reown/update-wishlist",
+      data,
+      configs
+    );
+    return createResponse(200, res.data.message ?? "", res.data ?? []);
+  } catch (err) {
+    return createExceptionResponse(err);
+  }
+};
+
+export const getwishlistData = async (token) => {
+  let configs = getHeadersWithAuth(token);
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL + "/reown/wishlist",
+      configs
+    );
+    return createResponse(200, res.data.message ?? "", res.data ?? []);
+  } catch (err) {
+    return createExceptionResponse(err);
+  }
+};

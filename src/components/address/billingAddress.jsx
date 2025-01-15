@@ -52,7 +52,7 @@ const BillingAddress = () => {
             sizes="20vw"
           />
         </div>
-        <p className="text-gray-700 font-semibold">Billing Address</p>
+        <p className="text-gray-700 font-semibold">Shipping details</p>
       </div>
       <form className="py-4" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -150,6 +150,19 @@ const BillingAddress = () => {
                 setaddress({ ...address, pincode: e.target.value })
               }
             />
+          </div>
+        </div>
+        <div className="form-group">
+          <div className="flex items-center justify-start gap-2">
+            <input
+              type="checkbox"
+              className="w-4 h-4"
+              id="sameAddress"
+              name="sameAddress"
+            />
+            <label className="form-check-label" htmlFor="sameAddress">
+              Same as billing address
+            </label>
           </div>
         </div>
         {isError && (

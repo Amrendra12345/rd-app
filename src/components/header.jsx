@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "@/redux/auth/auth.reducer";
 import { cartActions } from "@/redux/cart/cart.reducer";
 import { getAuthData } from "@/redux/auth/auth.selector";
 import { getCartData } from "@/redux/cart/cart.selector";
-
 import Login from "./authComponent/login";
 import SignUp from "./authComponent/signUp";
 import MobileOtp from "./authComponent/mobileOtp";
 import { useRouter } from "next/router";
 import CartSidebar from "./cartSidebar";
+import { FiHeart } from "react-icons/fi";
+import { wishlistActions } from "@/redux/wishlist/wishlist.reducer";
+import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
 
 const Header = () => {
   const router = useRouter();
@@ -21,6 +23,7 @@ const Header = () => {
   const [stickyClass, setStickyClass] = useState("relative");
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
+  const wishlist = useSelector(getWishlistData);
   const dispatch = useDispatch();
   const [isCartSidebar, setIsCartSidebar] = useState(false);
   const handleCartOpen = () => setIsCartSidebar(true);
@@ -51,6 +54,7 @@ const Header = () => {
   useEffect(() => {
     if (auth && auth.currentUser && auth.authLoaded) {
       dispatch(cartActions.syncCartData());
+      dispatch(wishlistActions.syncWishlistData());
     }
   }, [auth]);
 
@@ -78,6 +82,9 @@ const Header = () => {
   const handleCartShow = () => {
     handleCartOpen();
   };
+  const handleWishlistPage = () => {
+    router.push("/wishlist");
+  };
   return (
     <>
       <header className={`${stickyClass} py-1`}>
@@ -94,7 +101,7 @@ const Header = () => {
                 style={{ width: "85%" }}
               />
             </Link>
-            <ul className="flex justify-end gap-4 items-center">
+            <ul className="flex justify-end gap-8 items-center">
               {!auth.currentUser ? (
                 <li
                   className="bg-teal-600 cursor-pointer hover:bg-teal-700 transition-all delay-300 rounded py-[6px] px-4 uppercase text-white"
@@ -110,6 +117,14 @@ const Header = () => {
                         {cart.cartCount}
                       </span>
                       <PiShoppingCartSimpleLight />
+                    </p>
+                  </li>
+                  <li onClick={handleWishlistPage}>
+                    <p className="text-gray-900 text-xl flex gap-2 justify-center items-center relative">
+                      <span className="absolute top-[-14px] right-[-13px] w-[18px] h-[18px] shadow-md border border-teal-600 rounded-full bg-teal-500 text-white text-[12px] flex justify-center items-center">
+                        {wishlist.wishlistCount}
+                      </span>
+                      <FiHeart />
                     </p>
                   </li>
                   <li
