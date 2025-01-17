@@ -17,7 +17,6 @@ const addToWishlist = createAsyncThunk(
       thunkApi.dispatch(wishlistActions.setPendingAction(true));
       return null;
     }
-
     let resp = await updateWishlist(
       thunkApi.getState().auth.token ?? "",
       payload.action,
@@ -107,6 +106,7 @@ const wishlistSlice = createSlice({
       console.log(items);
     },
     addItem(state, action) {
+      console.log(action.payload);
       let items = state.wishlistItems;
       items.push(action.payload);
       state.wishlistItems = items;

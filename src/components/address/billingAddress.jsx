@@ -5,6 +5,7 @@ import { updateBillingAddress } from "@/servers/lib-reown/lib";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import FormShipping from "./formShipping";
 
 const BillingAddress = () => {
   const auth = useSelector(getAuthData);
@@ -54,7 +55,7 @@ const BillingAddress = () => {
         </div>
         <p className="text-gray-700 font-semibold">Shipping details</p>
       </div>
-      <form className="py-4" onSubmit={handleSubmit}>
+      {/* <form className="py-4" onSubmit={handleSubmit}>
         <div className="form-group">
           <div className="form-input">
             <label htmlFor="fullname">Full Name</label>
@@ -183,7 +184,8 @@ const BillingAddress = () => {
             Update
           </button>
         </div>
-      </form>
+      </form> */}
+      <FormShipping />
     </div>
   );
 };

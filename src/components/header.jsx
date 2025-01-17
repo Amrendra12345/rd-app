@@ -51,13 +51,6 @@ const Header = () => {
     });
   });
 
-  useEffect(() => {
-    if (auth && auth.currentUser && auth.authLoaded) {
-      dispatch(cartActions.syncCartData());
-      dispatch(wishlistActions.syncWishlistData());
-    }
-  }, [auth]);
-
   const displayLoginSidebar = () => {
     switch (auth.openedLoginSidebar) {
       case "login":

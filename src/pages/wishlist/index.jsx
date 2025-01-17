@@ -1,16 +1,44 @@
 import Breadcrumd from "@/components/breadcrumd";
 import { getAuthData } from "@/redux/auth/auth.selector";
+import { cartActions } from "@/redux/cart/cart.reducer";
+import { getCartData } from "@/redux/cart/cart.selector";
+import { wishlistActions } from "@/redux/wishlist/wishlist.reducer";
 import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
 import Image from "next/image";
 import React from "react";
 import { BiRupee } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Wishlist = () => {
   const auth = useSelector(getAuthData);
+  const cart = useSelector(getCartData);
   const wishlist = useSelector(getWishlistData);
-  console.log(wishlist.wishlistItemsData);
-
+  const dispatch = useDispatch();
+  const handleRemoveWishlist = (productId) => {
+    dispatch(
+      wishlistActions.addToWishlist({
+        action: "remove",
+        product_sku_id: productId,
+      })
+    );
+  };
+  const handleAddtoCart = (productId) => {
+    dispatch(
+      cartActions.addToCart({
+        product_sku_id: productId,
+        quantity: 1,
+        custom_ram: null,
+        custom_hdd: null,
+      })
+    );
+    //  condition
+    dispatch(
+      wishlistActions.addToWishlist({
+        action: "remove",
+        product_sku_id: productId,
+      })
+    );
+  };
   return (
     <>
       <Breadcrumd pageName="wishlist" />
@@ -52,13 +80,19 @@ const Wishlist = () => {
                     </div>
                   </div>
                   <div className="flex-col flex gap-2 w-1/3 justify-start items-center">
-                    <button className="py-1 px-4 rounded border text-blue-600 ">
+                    <button
+                      className="py-1 px-4 rounded border text-blue-600"
+                      onClick={() => handleAddtoCart(el.product_sku_id)}
+                    >
                       Add to cart
                     </button>
                     <button className="py-1 px-4 rounded border text-green-600">
                       Buy Now
                     </button>
-                    <button className="py-1 px-4 rounded border text-red-700">
+                    <button
+                      className="py-1 px-4 rounded border text-red-700"
+                      onClick={() => handleRemoveWishlist(el.product_sku_id)}
+                    >
                       Remove
                     </button>
                   </div>

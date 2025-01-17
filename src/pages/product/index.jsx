@@ -24,7 +24,7 @@ import { BsCart2, BsEye } from "react-icons/bs";
 import { FaRupeeSign, FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-
+import { toast, ToastContainer } from "react-toastify";
 const ProductList = (props) => {
   const { products } = props;
   const [isActive, setIsctive] = useState(false);
@@ -34,14 +34,22 @@ const ProductList = (props) => {
   const wishlist = useSelector(getWishlistData);
   const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
-
+  const notify = () => {
+    toast.info("Allready added to Cart list", {
+      position: "top-center",
+      className: "py-2 px-4 w-[300px] bg-gray-500 text-white ",
+    });
+  };
+  const wishlitNotiy = () => {
+    toast.warning("Allready added to wishlist", {
+      position: "top-center",
+      className: "py-2 px-4 w-[300px] bg-black/80 text-white ",
+    });
+  };
   // console.log(cart);
   const handleCartIcon = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
-    if (auth && auth.currentUser === null) {
-      dispatch(authActions.openSidebar("login"));
-    }
 
     if (cart.cartItems && !cart.cartItems.includes(id)) {
       dispatch(
@@ -52,6 +60,8 @@ const ProductList = (props) => {
           custom_hdd: null,
         })
       );
+    } else {
+      notify();
     }
   };
   const handleQuickView = async (e, id) => {
@@ -64,11 +74,18 @@ const ProductList = (props) => {
   const closePopup = () => setIsctive(false);
   const handleWishlist = async (e, id) => {
     e.preventDefault();
-    const res = await updateWishlist(auth.token, "add", id);
-    console.log(res.data.wishlist);
+
+    if (wishlist.wishlistItems && !wishlist.wishlistItems.includes(id)) {
+      dispatch(
+        wishlistActions.addToWishlist({ action: "add", product_sku_id: id })
+      );
+    } else {
+      wishlitNotiy();
+    }
   };
   return (
     <>
+      <ToastContainer />
       <Breadcrumd />
       <div className="container pt-16">
         <div className="flex justify-start items-start gap-8">

@@ -247,3 +247,7 @@
   .cart-checkout-content::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  .toast{
+         background-color: #141414;
+         color: #ffffff;
+  }
