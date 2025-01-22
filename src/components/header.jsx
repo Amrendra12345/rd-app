@@ -35,7 +35,12 @@ const Header = () => {
       window.removeEventListener("scroll", stickNavbar);
     };
   }, []);
-
+  useEffect(() => {
+    if (auth && auth.currentUser && auth.authLoaded) {
+      dispatch(cartActions.syncCartData());
+      dispatch(wishlistActions.syncWishlistData());
+    }
+  }, [auth]);
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
