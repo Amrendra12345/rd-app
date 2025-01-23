@@ -1,4 +1,5 @@
 import { getAuthData } from "@/redux/auth/auth.selector";
+import { cartActions } from "@/redux/cart/cart.reducer";
 import { applyCoupon } from "@/servers/lib-reown/lib";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,13 +8,24 @@ const ApplyCoupon = () => {
   const auth = useSelector(getAuthData);
   const dispatch = useDispatch();
   const [couponCode, setCouponCode] = useState("");
+  const [isApplyCoupon, setIsApplyCoupon] = useState(false);
   const [isError, setIsError] = useState(null);
 
   const handleCouponApply = async () => {
     if (couponCode?.length > 3) {
       setIsError(null);
-      const res = await applyCoupon(auth.token, couponCode);
-      console.log(res);
+      const resp = await dispatch(
+        cartActions.applyCouponAction(couponCode)
+      ).unwrap();
+      if (resp.status == 200) {
+        setIsApplyCoupon(true);
+        setCouponCode("");
+        setTimeout(() => {
+          setIsApplyCoupon(false);
+        }, 4000);
+      } else {
+        setIsError("Invalid coupon code");
+      }
     } else {
       setIsError("Invalid coupon code");
       setTimeout(() => {
@@ -43,6 +55,11 @@ const ApplyCoupon = () => {
         </div>
         {isError && (
           <p className="text-red-500 text-sm mt-[-8px] px-2">{isError}</p>
+        )}
+        {isApplyCoupon && (
+          <p className="text-green-700 text-sm mt-[-8px] px-2">
+            Coupon code applied successfully
+          </p>
         )}
       </div>
     </>
