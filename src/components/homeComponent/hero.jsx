@@ -11,10 +11,10 @@ const Hero = () => {
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
-        // autoplay={{
-        //   delay: 1000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 600,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
