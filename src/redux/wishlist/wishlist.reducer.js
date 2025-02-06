@@ -103,10 +103,10 @@ const wishlistSlice = createSlice({
     removeItem(state, action) {
       let items = state.wishlistItems;
       items = items.filter((item) => item !== action.payload);
-      console.log(items);
+      //   console.log(items);
     },
     addItem(state, action) {
-      console.log(action.payload);
+      //  console.log(action.payload);
       let items = state.wishlistItems;
       items.push(action.payload);
       state.wishlistItems = items;

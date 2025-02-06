@@ -4,7 +4,7 @@ import * as fs from "fs";
 
 handler.post(async (req, res) => {
   const { endpoint } = req.query;
-  console.log(req.session, "session");
+  // console.log(req.session, "session");
   let result;
   switch (endpoint) {
     case "productData":

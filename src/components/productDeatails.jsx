@@ -6,7 +6,7 @@ import { PiVanThin } from "react-icons/pi";
 import { IoMdTime } from "react-icons/io";
 
 const ProductDeatails = (props) => {
-  console.log(props.product);
+  // console.log(props.product);
   return (
     <div className="container mt-4">
       <div className="flex justify-start gap-10">

@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const PriceDetails = (props) => {
   const cart = useSelector(getCartData);
+  const totalPrice = cart.cartTotal - cart.cartDiscount;
 
   return (
     <>
@@ -24,7 +25,7 @@ const PriceDetails = (props) => {
           <p className="text-gray-500 text-sm">Coupon Discount</p>
           <p className="flex justify-end items-center text-gray-600 gap-0 text-sm">
             <FaRupeeSign className="text-[12px] mt-[-1px] text-gray-500" />
-            <span className="font-bold">0</span>
+            <span className="font-bold">{cart.cartDiscount}</span>
           </p>
         </div>
         <div className="flex justify-between items-center px-4 pt-3 pb-4">
@@ -38,7 +39,7 @@ const PriceDetails = (props) => {
           <p className="flex justify-end items-center text-gray-600 gap-0">
             <FaRupeeSign className="text-[12px] mt-[-1px] text-gray-500" />
             <span className="font-semibold text-sm text-gray-800">
-              {cart.cartTotal}
+              {totalPrice}
             </span>
           </p>
         </div>

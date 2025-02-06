@@ -19,10 +19,11 @@ const ApplyCoupon = () => {
       ).unwrap();
       if (resp.status == 200) {
         setIsApplyCoupon(true);
+        //  console.log(resp.data);
         setCouponCode("");
         setTimeout(() => {
           setIsApplyCoupon(false);
-        }, 4000);
+        }, 9000);
       } else {
         setIsError("Invalid coupon code");
       }

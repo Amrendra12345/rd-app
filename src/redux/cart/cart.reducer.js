@@ -26,7 +26,7 @@ const addToCart = createAsyncThunk("addToCart", async (payload, thunkApi) => {
     thunkApi.dispatch(cartActions.setPendingAction(true));
     return null;
   }
-  console.log(payload);
+  //  console.log(payload);
   let resp = await addCartApi(
     thunkApi.getState().auth.token ?? "",
     payload.product_sku_id,

@@ -496,3 +496,32 @@ export const getwishlistData = async (token) => {
     return createExceptionResponse(err);
   }
 };
+
+export const updateProfileDetails = async (token, address) => {
+  let configs = getHeadersWithAuth(token);
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL +
+        "/manage-profile/update-profile",
+      address,
+      configs
+    );
+    return createResponse(200, res.data.message ?? "", res.data ?? []);
+  } catch (err) {
+    return createExceptionResponse(err);
+  }
+};
+
+export const getPaymentMethods = async (token, rzp_payment_id) => {
+  try {
+    let configs = getHeadersWithAuth(token);
+    const res = await axios.get(
+      "https://rapiv2.recycledevice.com/api/reown/do-booking-invoice/pay_PnqHmFtJ4nutTP",
+      configs
+    );
+    console.log(res);
+    return res.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+};

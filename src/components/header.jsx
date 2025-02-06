@@ -16,6 +16,7 @@ import CartSidebar from "./cartSidebar";
 import { FiHeart } from "react-icons/fi";
 import { wishlistActions } from "@/redux/wishlist/wishlist.reducer";
 import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
+import { getparty } from "@/redux/profile/profile.selector";
 
 const Header = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const Header = () => {
   const [stickyClass, setStickyClass] = useState("relative");
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
+  const party = useSelector(getparty);
   const wishlist = useSelector(getWishlistData);
   const dispatch = useDispatch();
   const [isCartSidebar, setIsCartSidebar] = useState(false);
@@ -129,7 +131,7 @@ const Header = () => {
                     className="flex justify-end items-center gap-2 text-gray-900 relative text-[14px]"
                     onClick={handlerDropdown}
                   >
-                    <span>{auth.currentUser.fullname} </span> <BsChevronDown />
+                    <span>{party?.party_name} </span> <BsChevronDown />
                     {isActive && (
                       <div className="absolute top-[135%] right-0 flex w-40 border border-gray-200 shadow-xl z-20 bg-white rounded">
                         <ul className="w-full">
