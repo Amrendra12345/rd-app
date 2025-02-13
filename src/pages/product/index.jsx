@@ -9,6 +9,7 @@ import { wishlistActions } from "@/redux/wishlist/wishlist.reducer";
 import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
 import { getCommonData } from "@/servers/lib-rd/ravi1";
 import { withSessionSsr } from "@/servers/lib-rd/session";
+import { createUrlFromParams } from "@/servers/lib-reown/helpers";
 
 import {
   createSlug,
@@ -19,21 +20,34 @@ import {
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { BsCart2, BsEye } from "react-icons/bs";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { BsCart2, BsChevronLeft, BsChevronRight, BsEye } from "react-icons/bs";
 import { FaRupeeSign, FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
+import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
+import style from "./pagination.module.css";
 const ProductList = (props) => {
   const { products } = props;
+  const router = useRouter();
   const [isActive, setIsctive] = useState(false);
   const [isCartAdded, setIsCartAdded] = useState(false);
   const cart = useSelector(getCartData);
   const auth = useSelector(getAuthData);
   const wishlist = useSelector(getWishlistData);
   const [product, setProduct] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filteredBrands, setFilteredBrands] = useState([]);
+  const [filteredProcessors, setFilteredProcessors] = useState([]);
   const dispatch = useDispatch();
+  const num_of_pages = Math.ceil(
+    parseInt(products.result_count) / parseInt(products.limit)
+  );
+
+  const currentPage = parseInt(products.offset) / parseInt(products.limit);
+
   const notify = () => {
     toast.info("Allready added to Cart list", {
       position: "top-center",
@@ -83,6 +97,80 @@ const ProductList = (props) => {
       wishlitNotiy();
     }
   };
+  const handlePageClick = (event) => {
+    if (event.nextSelectedPage != undefined) {
+      router.push(
+        "/product" +
+          createUrlFromParams(
+            parseInt(event.nextSelectedPage) + 1,
+            router.query.search,
+            router.query["make_id[]"],
+            router.query["processor[]"]
+          )
+      );
+    }
+  };
+
+  useEffect(() => {
+    setSearch(router.query.search ?? "");
+    if (router.query["make_id[]"]) {
+      if (Array.isArray(router.query["make_id[]"]))
+        setFilteredBrands(router.query["make_id[]"]);
+      else setFilteredBrands([router.query["make_id[]"]]);
+    } else {
+      setFilteredBrands([]);
+    }
+    if (router.query["processors[]"]) {
+      if (Array.isArray(router.query["processors[]"]))
+        setFilteredProcessors(router.query["processors[]"]);
+      else setFilteredProcessors([router.query["processors[]"]]);
+    } else {
+      setFilteredProcessors([]);
+    }
+  }, []);
+  const applyBrandFilters = (brand, action) => {
+    let brands = filteredBrands;
+    if (action == "add") {
+      if (!brands.includes(brand)) brands.push(brand);
+    } else {
+      brands = brands.filter((value) => {
+        if (brand == value) return false;
+        return true;
+      });
+    }
+    setFilteredBrands(brands);
+    router.push(
+      "/product" +
+        createUrlFromParams(
+          undefined,
+          router.query.search,
+          brands,
+          router.query["processors[]"]
+        )
+    );
+  };
+  const applyProcessorFilters = (processor, action) => {
+    let processors = filteredProcessors;
+    if (action == "add") {
+      if (!processors.includes(processor)) processors.push(processor);
+    } else {
+      processors = processors.filter((value) => {
+        if (processor == value) return false;
+        return true;
+      });
+    }
+    setFilteredProcessors(processors);
+    // router.push(
+    //   "/product" +
+    //     createUrlFromParams(
+    //       undefined,
+    //       router.query.search,
+    //       router.query["make_id[]"],
+    //       processors
+    //     )
+    // );
+  };
+  console.log(filteredProcessors, "filteredProcessorsfilteredProcessors");
   return (
     <>
       <ToastContainer />
@@ -90,7 +178,12 @@ const ProductList = (props) => {
       <div className="container pt-16">
         <div className="flex justify-start items-start gap-8">
           <div className="w-[400px]">
-            <AsideFilter />
+            <AsideFilter
+              applyBrandFilters={applyBrandFilters}
+              selectedBrands={filteredBrands}
+              applyProcessorFilters={applyProcessorFilters}
+              selectedProcessors={filteredProcessors}
+            />
           </div>
           <div className="w-full">
             <h1 className="text-xl font-semibold">Product </h1>
@@ -167,6 +260,20 @@ const ProductList = (props) => {
                     </div>
                   );
                 })}
+            </div>
+            <div
+              className={`${style.pagination} paginations flex w-full justify-end items-center mt-4`}
+            >
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel={<BsChevronRight />}
+                onClick={(event) => handlePageClick(event)}
+                pageRangeDisplayed={5}
+                pageCount={num_of_pages}
+                previousLabel={<BsChevronLeft />}
+                renderOnZeroPageCount={null}
+                forcePage={currentPage}
+              ></ReactPaginate>
             </div>
           </div>
         </div>

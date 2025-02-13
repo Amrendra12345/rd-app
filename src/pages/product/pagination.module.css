@@ -1,0 +1,7 @@
+.pagination ul{
+    @apply flex w-full justify-end items-start gap-1 my-8
+}
+.pagination ul li{
+    @apply border p-2 rounded h-8 w-8 flex justify-center items-center
+}
+

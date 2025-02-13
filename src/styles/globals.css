@@ -256,4 +256,6 @@
          background-color: #141414;
          color: #ffffff;
   }
-  
+  .paginations ul li.selected{
+    @apply bg-teal-400 text-white
+}

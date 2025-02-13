@@ -12,7 +12,7 @@ const Hero = () => {
         spaceBetween={30}
         loop={true}
         autoplay={{
-          delay: 600,
+          delay: 8000,
           disableOnInteraction: false,
         }}
         pagination={{

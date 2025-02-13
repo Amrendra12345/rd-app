@@ -2,7 +2,7 @@ import { getFilters } from "@/servers/lib-reown/lib";
 import { useEffect, useState } from "react";
 import { BsLaptop } from "react-icons/bs";
 import { FaSlidersH } from "react-icons/fa";
-const AsideFilter = () => {
+const AsideFilter = (props) => {
   const [filters, setFilters] = useState([]);
 
   useEffect(() => {
@@ -14,8 +14,12 @@ const AsideFilter = () => {
     };
     getFiltersResp();
   }, []);
-
-  //console.log(filters);
+  const handleBrandChange = (event, value) => {
+    props.applyBrandFilters(value, event.target.checked ? "add" : "remove");
+  };
+  const handleProcessorChange = (event, value) => {
+    props.applyProcessorFilters(value, event.target.checked ? "add" : "remove");
+  };
   return (
     <>
       <div className="w-full bg-gray-100 rounded relative">
@@ -47,6 +51,9 @@ const AsideFilter = () => {
                           id={brand.product_make}
                           type="checkbox"
                           value=""
+                          onChange={(e) =>
+                            handleBrandChange(e, brand.product_make)
+                          }
                         />
                         <label
                           className="leading-normal text-gray-500 text-[14px]"
@@ -82,6 +89,9 @@ const AsideFilter = () => {
                           id={processor.processor}
                           type="checkbox"
                           value=""
+                          onChange={(e) =>
+                            handleProcessorChange(e, processor.processor)
+                          }
                         />
                         <label
                           className="leading-normal text-gray-500 text-[14px]"
