@@ -6,42 +6,41 @@ import {
   getPaymentMethods,
 } from "@/servers/lib-reown/lib";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { BiRupee } from "react-icons/bi";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import { useSelector } from "react-redux";
 
 const ChexkoutPrices = () => {
+  const router = useRouter();
   const auth = useSelector(getAuthData);
   const cart = useSelector(getCartData);
   const { error, isLoading, Razorpay } = useRazorpay();
   const handlePlaceOrder = async () => {
     const res = await getCheckoutDetails(auth.token);
-
     if (res.status == 200) {
       console.log(res.data);
-
       const options = {
-        key: "rzp_test_vVBIqTtCqEXqYF",
+        // key: "rzp_test_vVBIqTtCqEXqYF",
+        key: res.data.payment_gateway.API_KEY_ID,
         amount:
           (res.data.cart.total_amount - res.data.cart.total_discount) * 100,
         currency: "INR",
         name: "Reown",
-        description: "",
+        description: "Purchase Order",
+        order_id: "",
         handler: async (response) => {
-          if (response) {
-            console.log(response.razorpay_payment_id);
-            const resp = await getPaymentMethods(
-              auth.token,
-              response.razorpay_payment_id
-            );
-            console.log(resp);
-          }
+          checkAndBook(auth.token, response.razorpay_payment_id);
         },
         prefill: {
           name: res.data.user_detail.fullname,
           email: res.data.user_detail.email,
           contact: res.data.user_detail.mobile,
+        },
+        notes: {
+          transaction_type: "wallet",
+          account_id: res.data.user_detail.party_id,
         },
         theme: {
           color: "#F37254",
@@ -49,6 +48,25 @@ const ChexkoutPrices = () => {
       };
       const razorpayInstance = new Razorpay(options);
       razorpayInstance.open();
+    }
+  };
+  let order_place_status = "repeat"; //success, error, repeat
+  let do_booking_count = 0;
+
+  const checkAndBook = (token, razorpay_payment_id) => {
+    setInterval(() => doBookingInvoice(token, razorpay_payment_id), 7000);
+  };
+  const doBookingInvoice = async (token, razorpay_payment_id) => {
+    if (do_booking_count >= 10) {
+      order_place_status = "error";
+      return;
+    } else if (order_place_status == "repeat") {
+      do_booking_count++;
+      const res = await getPaymentMethods(token, razorpay_payment_id);
+      console.log(res.data);
+      //   if (res.status == 200) {
+      //     router.push("/order-complete/");
+      //   }
     }
   };
 
@@ -88,7 +106,7 @@ const ChexkoutPrices = () => {
             className="w-full py-3 uppercase px-4 text-white text-center bg-teal-800 hover:bg-teal-700 rounded"
             onClick={handlePlaceOrder}
           >
-            {!isLoading ? "Please waite..." : "Place Order"}
+            Place Order
           </button>
         </div>
       </div>

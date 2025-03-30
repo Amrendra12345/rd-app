@@ -39,7 +39,7 @@ const Profile = () => {
     if (auth.authLoaded && auth.currentUser) {
       dispatch(profileActions.getProfileFullDetails());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
   const fullname = party && party.party_name;
   const initialValues = {
     first_name: fullname?.split(" ")[0],

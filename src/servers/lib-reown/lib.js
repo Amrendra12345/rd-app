@@ -424,19 +424,6 @@ export const revokeCoupon = async (token) => {
   }
 };
 
-export const getCheckoutDetails = async (token) => {
-  try {
-    let configs = getHeadersWithAuth(token);
-    const res = await axios.get(
-      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL + "/reown/get-checkout-details",
-      configs
-    );
-    return createResponse(200, res.data.message ?? "", res.data ?? []);
-  } catch (err) {
-    return createExceptionResponse(err);
-  }
-};
-
 export const purchaseOrdersList = async (token, limit = "", offset = "") => {
   try {
     let configs = getHeadersWithAuth(token);
@@ -511,17 +498,29 @@ export const updateProfileDetails = async (token, address) => {
     return createExceptionResponse(err);
   }
 };
-
+export const getCheckoutDetails = async (token) => {
+  try {
+    let configs = getHeadersWithAuth(token);
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL + "/reown/get-checkout-details",
+      configs
+    );
+    return createResponse(200, res.data.message ?? "", res.data ?? []);
+  } catch (err) {
+    return createExceptionResponse(err);
+  }
+};
 export const getPaymentMethods = async (token, rzp_payment_id) => {
   try {
     let configs = getHeadersWithAuth(token);
     const res = await axios.get(
-      "https://rapiv2.recycledevice.com/api/reown/do-booking-invoice/pay_PnqHmFtJ4nutTP",
+      process.env.NEXT_PUBLIC_RAPIV2_BASE_URL +
+        "/reown/do-booking-invoice/" +
+        rzp_payment_id,
       configs
     );
-    console.log(res);
-    return res.data;
+    return createResponse(200, res.data.message ?? "", res.data ?? []);
   } catch (err) {
-    console.log(err.message);
+    return createExceptionResponse(err);
   }
 };

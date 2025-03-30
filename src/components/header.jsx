@@ -42,7 +42,7 @@ const Header = () => {
       dispatch(cartActions.syncCartData());
       dispatch(wishlistActions.syncWishlistData());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
@@ -56,7 +56,8 @@ const Header = () => {
     router.events.on("routeChangeStart", (url) => {
       dispatch(authActions.closeSidebar());
     });
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const displayLoginSidebar = () => {
     switch (auth.openedLoginSidebar) {

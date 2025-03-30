@@ -27,7 +27,8 @@ const CartDetails = (props) => {
         router.push("/");
       }
     }
-  }, [auth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth, router]);
 
   const handlerRemoveItem = (id) => {
     setIsWaite(true);

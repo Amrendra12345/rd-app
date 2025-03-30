@@ -25,7 +25,7 @@ const BillingAddress = () => {
     if (auth.authLoaded && auth.currentUser) {
       dispatch(profileActions.getProfileFullDetails());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
   console.log(party);
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -88,6 +88,7 @@ export const getCommonData = async (req, post_data = []) => {
 };
 export const isMetaRequired = (url) => {
   const url_segs = url.split("/");
+  console.log("meta required", url_segs[1], "meta required");
   if (url_segs[1] != "_next") return true;
   return false;
 };

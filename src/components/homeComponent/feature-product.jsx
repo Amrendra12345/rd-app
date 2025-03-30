@@ -5,6 +5,8 @@ import { BsCart2, BsEye } from "react-icons/bs";
 import { FaRupeeSign, FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { MdProductionQuantityLimits } from "react-icons/md";
+import Tooltip from "../tooltip ";
+
 const data = [
   {
     url: "/img/2.png",
@@ -51,27 +53,30 @@ const FeatureProduct = () => {
           {data.map((product, index) => {
             return (
               <div className="product-img" key={index}>
-                <div className="relative p-4 bg-gray-100 h-[300px] mb-28">
-                  <Link href={`/product`} title="Go to Product Page">
-                    <div className="w-[295px] h-[250px] relative">
-                      <Image
-                        src={product.url}
-                        sizes="30vw"
-                        fill
-                        style={{
-                          objectFit: "contain",
-                          mixBlendMode: "multiply",
-                        }}
-                        className="img-fluid"
-                        alt="img"
-                        priority
-                      />
-                    </div>
-                    <div className="flex justify-center items-center gap-4 caption_product">
-                      <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
-                        <MdProductionQuantityLimits className="text-white text-xl relative" />
-                      </span>
-                    </div>
+                <div className="relative p-4 bg-gray-100 h-[275px] mb-24">
+                  <Link href={`/product`}>
+                    <Tooltip message="Go To Product Page">
+                      <div className="w-[295px] h-[230px] relative">
+                        <Image
+                          src={product.url}
+                          sizes="30vw"
+                          fill
+                          style={{
+                            objectFit: "contain",
+                            mixBlendMode: "multiply",
+                          }}
+                          className="img-fluid"
+                          alt="img"
+                          priority
+                        />
+                      </div>
+
+                      <div className="flex justify-center items-center gap-4 -bottom-[53px] caption_product">
+                        <span className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center">
+                          <MdProductionQuantityLimits className="text-white text-xl relative" />
+                        </span>
+                      </div>
+                    </Tooltip>
                   </Link>
                   <div className="flex justify-center items-center gap-2 mb-4 mt-12">
                     <FaStar className="text-gray-200" />

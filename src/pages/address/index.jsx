@@ -21,7 +21,7 @@ const Address = () => {
     if (auth.authLoaded && auth.currentUser) {
       dispatch(profileActions.getProfileFullDetails());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
 
   return (
     <>

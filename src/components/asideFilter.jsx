@@ -2,14 +2,18 @@ import { getFilters } from "@/servers/lib-reown/lib";
 import { useEffect, useState } from "react";
 import { BsLaptop } from "react-icons/bs";
 import { FaSlidersH } from "react-icons/fa";
+import { SkeletonDemo } from "./SkeletonDemo";
+
 const AsideFilter = (props) => {
   const [filters, setFilters] = useState([]);
-
+  const [isLoding, setIsLoding] = useState(false);
   useEffect(() => {
     const getFiltersResp = async () => {
+      setIsLoding(true);
       const filtersResp = await getFilters();
       if (filtersResp.status === 200) {
         setFilters(filtersResp.data.filters);
+        setIsLoding(false);
       }
     };
     getFiltersResp();
@@ -22,6 +26,7 @@ const AsideFilter = (props) => {
   };
   return (
     <>
+      <SkeletonDemo />
       <div className="w-full bg-gray-100 rounded relative">
         <div className="px-6 py-4 border-b border-gray-300">
           <p className="flex justify-between items-center">
@@ -41,13 +46,15 @@ const AsideFilter = (props) => {
             </span>
           </p>
           <ul className="mt-2 asideBrand_ul">
-            {Array.isArray(filters.brands) && filters.brands.length > 0
+            {isLoding
+              ? "Please wait..."
+              : Array.isArray(filters.brands) && filters.brands.length > 0
               ? filters.brands.map((brand) => {
                   return (
                     <li key={brand.product_make} className="py-2">
                       <div className="flex item- gap-2 center justify-start">
                         <input
-                          className="w-[14px] h-[14px] mt-[3px] border-gray-300 "
+                          className="w-[14px] h-[14px] mt-[3px] rounded-none border-gray-300 "
                           id={brand.product_make}
                           type="checkbox"
                           value=""
@@ -56,7 +63,7 @@ const AsideFilter = (props) => {
                           }
                         />
                         <label
-                          className="leading-normal text-gray-500 text-[14px]"
+                          className="leading-normal text-gray-600 text-sm"
                           htmlFor={brand.product_make}
                         >
                           {" "}

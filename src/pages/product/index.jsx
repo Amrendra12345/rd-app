@@ -10,7 +10,6 @@ import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
 import { getCommonData } from "@/servers/lib-rd/ravi1";
 import { withSessionSsr } from "@/servers/lib-rd/session";
 import { createUrlFromParams } from "@/servers/lib-reown/helpers";
-
 import {
   createSlug,
   getLaptopDetails,
@@ -29,6 +28,7 @@ import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import style from "./pagination.module.css";
+import Tooltip from "@/components/tooltip2";
 const ProductList = (props) => {
   const { products } = props;
   const router = useRouter();
@@ -88,7 +88,6 @@ const ProductList = (props) => {
   const closePopup = () => setIsctive(false);
   const handleWishlist = async (e, id) => {
     e.preventDefault();
-
     if (wishlist.wishlistItems && !wishlist.wishlistItems.includes(id)) {
       dispatch(
         wishlistActions.addToWishlist({ action: "add", product_sku_id: id })
@@ -127,7 +126,9 @@ const ProductList = (props) => {
     } else {
       setFilteredProcessors([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const applyBrandFilters = (brand, action) => {
     let brands = filteredBrands;
     if (action == "add") {
@@ -149,31 +150,9 @@ const ProductList = (props) => {
         )
     );
   };
-  const applyProcessorFilters = (processor, action) => {
-    let processors = filteredProcessors;
-    if (action == "add") {
-      if (!processors.includes(processor)) processors.push(processor);
-    } else {
-      processors = processors.filter((value) => {
-        if (processor == value) return false;
-        return true;
-      });
-    }
-    setFilteredProcessors(processors);
-    // router.push(
-    //   "/product" +
-    //     createUrlFromParams(
-    //       undefined,
-    //       router.query.search,
-    //       router.query["make_id[]"],
-    //       processors
-    //     )
-    // );
-  };
-  console.log(filteredProcessors, "filteredProcessorsfilteredProcessors");
+  const applyProcessorFilters = () => {};
   return (
     <>
-      <ToastContainer />
       <Breadcrumd />
       <div className="container pt-16">
         <div className="flex justify-start items-start gap-8">
@@ -198,8 +177,18 @@ const ProductList = (props) => {
                           el.product_sku_id
                         )}`}
                       >
-                        <div className="relative p-4 bg-gray-100 h-[300px]">
-                          <div className="w-[275x] h-[200px] relative">
+                        <div className="relative p-4 bg-gray-100 h-[250px]">
+                          {cart.cartItems.includes(el.product_sku_id) ? (
+                            <div className="-ml-9 -mt-3 relative">
+                              <span className="text-white bg-green-800 py-1 pl-3 pr-2 rounded-sm text-sm">
+                                Added to Cart
+                              </span>
+                              <i className="arrowProduct"></i>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                          <div className="w-[275x] h-[170px] relative">
                             <Image
                               src={el.product_icon}
                               sizes="30vw"
@@ -213,31 +202,45 @@ const ProductList = (props) => {
                               priority
                             />
                           </div>
-                          <div className="flex justify-center items-center gap-4 caption_product">
-                            <span
-                              className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
-                              onClick={(e) =>
-                                handleCartIcon(e, el.product_sku_id)
+                          <div className="flex justify-center items-center gap-4 -bottom-[20px] caption_product">
+                            <Tooltip message={"Add to Cart"}>
+                              <span
+                                className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
+                                onClick={(e) =>
+                                  handleCartIcon(e, el.product_sku_id)
+                                }
+                              >
+                                <BsCart2 className="text-white text-xl" />
+                              </span>
+                            </Tooltip>
+                            <Tooltip message={"Quickview"}>
+                              <span
+                                className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
+                                onClick={(e) =>
+                                  handleQuickView(e, el.product_sku_id)
+                                }
+                              >
+                                <BsEye className="text-white text-xl" />
+                              </span>
+                            </Tooltip>
+                            <Tooltip
+                              message={
+                                wishlist.wishlistItems.includes(
+                                  el.product_sku_id
+                                )
+                                  ? "Added to wishlist"
+                                  : "Wishlist"
                               }
                             >
-                              <BsCart2 className="text-white text-xl" />
-                            </span>
-                            <span
-                              className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
-                              onClick={(e) =>
-                                handleQuickView(e, el.product_sku_id)
-                              }
-                            >
-                              <BsEye className="text-white text-xl" />
-                            </span>
-                            <span
-                              className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
-                              onClick={(e) =>
-                                handleWishlist(e, el.product_sku_id)
-                              }
-                            >
-                              <FiHeart className="text-white text-xl" />
-                            </span>
+                              <span
+                                className="bg-sky-600 h-10 w-10 rounded-full flex justify-center items-center"
+                                onClick={(e) =>
+                                  handleWishlist(e, el.product_sku_id)
+                                }
+                              >
+                                <FiHeart className="text-white text-xl" />
+                              </span>
+                            </Tooltip>
                           </div>
                         </div>
                       </Link>

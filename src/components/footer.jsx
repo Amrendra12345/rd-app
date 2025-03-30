@@ -113,19 +113,19 @@ const Footer = () => {
             </p>
             <ul>
               <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Terms & Conditions
+                <Link href={"/terms-and-conditions"}>Terms & Conditions</Link>
               </li>
               <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Privacy Policy
+                <Link href={"/privacy-policy"}>Privacy Policy</Link>
               </li>
               <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Terms of Use
+                <Link href={"/terms-of-use"}>Terms of Use</Link>
               </li>
               <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                E-Waste Policy
+                <Link href={"/e-waste-policy"}>E-Waste Policy</Link>
               </li>
               <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Cookie Policy
+                <Link href={"/cookie-policy"}>Cookie Policy</Link>
               </li>
               <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
                 Why Refurbished?

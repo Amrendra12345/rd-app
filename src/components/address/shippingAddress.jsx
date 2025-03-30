@@ -17,7 +17,7 @@ const ShippingAddress = () => {
     if (auth.authLoaded && auth.currentUser) {
       dispatch(profileActions.getProfileFullDetails());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
 
   const handlerBillingCheckbox = (e) => {
     setCheckBoxActive(!checkboxActive);

@@ -57,7 +57,7 @@ const CartAddress = (props) => {
     if (auth.authLoaded && auth.currentUser) {
       dispatch(profileActions.getProfileFullDetails());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
 
   const handleAddressSubmit = () => {
     const billingSame = deliveryBillingSame.current.checked ? 1 : 0;

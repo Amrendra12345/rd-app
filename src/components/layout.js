@@ -11,7 +11,7 @@ const Layout = (props) => {
   const { city, user } = props;
   useEffect(() => {
     dispatch(authActions.checkAndLoadInitialAuth());
-  }, []);
+  }, [dispatch]);
   return (
     <main className={inter.className}>
       <Header city={city} user={user} />

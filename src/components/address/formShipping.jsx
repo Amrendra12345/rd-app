@@ -21,7 +21,7 @@ const FormShipping = () => {
     if (auth.authLoaded && auth.currentUser) {
       dispatch(profileActions.getProfileFullDetails());
     }
-  }, [auth]);
+  }, [auth, dispatch]);
 
   const initialValues = {
     name: party && party.party_name,

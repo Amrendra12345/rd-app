@@ -25,7 +25,7 @@ const OrderDetails = () => {
           }
         });
     }
-  }, [auth]);
+  }, [auth, dispatch]);
 
   return (
     <>

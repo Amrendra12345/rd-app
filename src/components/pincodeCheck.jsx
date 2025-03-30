@@ -14,7 +14,7 @@ const PincodeCheck = ({ pincodeCheckCallback }) => {
       setStatus("serviceable");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, []);
 
   const checkPincode = async () => {
     let pincode = pinRef.current.value;
