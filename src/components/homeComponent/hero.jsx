@@ -11,10 +11,10 @@ const Hero = () => {
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
-        autoplay={{
-          delay: 8000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 10000,
+        //   disableOnInteraction: false,
+        // }}
         pagination={{
           clickable: true,
         }}
@@ -38,17 +38,18 @@ const Hero = () => {
               />
             </div>
             <div className="caption h-auto w-1/2 flex justify-start items-center flex-col">
-              <h1 className="text-4xl font-bold uppercase text-slate-800">
-                Best Refurbished electronics
+              <h1 className="text-2xl font-bold uppercase text-slate-800">
+                Power Meets Portability
               </h1>
-              <h2 className="text-3xl font-bold uppercase text-slate-800 my-4">
-                laptop and mobile
+              <h2 className="text-lg font-semibold  text-slate-800 my-4">
+                Explore top-rated laptops for work, play, and everything in
+                between.
               </h2>
               <Link
                 href={"/product"}
                 className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
               >
-                Shop Now
+                Shop Laptops
               </Link>
             </div>
           </div>
@@ -70,17 +71,17 @@ const Hero = () => {
               />
             </div>
             <div className="caption h-auto w-1/2 flex justify-start items-center flex-col">
-              <h1 className="text-4xl font-bold uppercase text-slate-800">
-                Best Refurbished electronics
+              <h1 className="text-2xl font-bold uppercase text-slate-800">
+                Your Next Upgrade Awaits
               </h1>
-              <h2 className="text-3xl font-bold uppercase text-slate-800 my-4">
-                laptop and mobile
+              <h2 className="text-lg font-semibold  text-slate-800 my-4">
+                Discover refurbished smartphones at unbeatable prices.
               </h2>
               <Link
                 href={"/product"}
                 className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
               >
-                Shop Now
+                Browse Mobiles
               </Link>
             </div>
           </div>
@@ -101,17 +102,18 @@ const Hero = () => {
               />
             </div>
             <div className="caption h-auto w-1/2 flex justify-start items-center flex-col">
-              <h1 className="text-4xl font-bold uppercase text-slate-800">
-                Best Refurbished electronics
+              <h1 className="text-2xl font-bold uppercase text-slate-800">
+                Gear Up with the Best Tech
               </h1>
-              <h2 className="text-3xl font-bold uppercase text-slate-800 my-4">
-                laptop and mobile
+              <h2 className="text-lg font-semibold  text-slate-800 my-4">
+                From smartwatches to earbuds — find the gadgets that fit your
+                lifestyle.
               </h2>
               <Link
                 href={"/product"}
                 className="mt-3 uppercase text-white bg-teal-600 rounded-full py-3 px-8"
               >
-                Shop Now
+                Explore Gadgets
               </Link>
             </div>
           </div>

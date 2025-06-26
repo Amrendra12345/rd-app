@@ -9,20 +9,7 @@ import Tooltip from "../tooltip ";
 
 const data = [
   {
-    url: "/img/5.jpg",
-    alt: "img",
-  },
-
-  {
-    url: "/img/4.jpg",
-    alt: "img",
-  },
-  {
-    url: "/img/2.png",
-    alt: "img",
-  },
-  {
-    url: "/img/3.webp",
+    url: "/img/10.jpg",
     alt: "img",
   },
   {
@@ -30,20 +17,32 @@ const data = [
     alt: "img",
   },
   {
-    url: "/img/10.jpg",
-    alt: "img",
-  },
-  {
     url: "/img/8.jpg",
     alt: "img",
   },
   {
-    url: "/img/10.jpg",
+    url: "/img/7.jpg",
+    alt: "img",
+  },
+  {
+    url: "/img/5.jpg",
+    alt: "img",
+  },
+  {
+    url: "/img/2.png",
+    alt: "img",
+  },
+  {
+    url: "/img/4.jpg",
+    alt: "img",
+  },
+  {
+    url: "/img/3.jpg",
     alt: "img",
   },
 ];
 
-const FeatureProduct = () => {
+const BestProduct = () => {
   return (
     <div className="container">
       <div className="grid grid-cols-4 gap-8 mt-8">
@@ -98,4 +97,4 @@ const FeatureProduct = () => {
   );
 };
 
-export default FeatureProduct;
+export default BestProduct;

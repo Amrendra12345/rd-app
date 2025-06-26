@@ -1,138 +1,209 @@
 import Link from "next/link";
 import React from "react";
-import { FaXTwitter, FaFacebookF, FaInstagram } from "react-icons/fa6";
-import { IoLogoYoutube } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <footer className="w-full py-10 bg-gray-50 mt-auto">
+    <footer className="w-full py-10 bg-gray-100 mt-auto">
       <div className="container">
-        <div className="grid gap-1 grid-flow-col">
-          <div className="">
-            <p className="font-semibold mb-6 text-sm text-[18px] text-gray-900 tracking-wide">
-              Follow us on
-            </p>
-            <ul className="flex gap-2">
-              <li className="border rounded border-gray-300 p-1 hover:bg-black hover:text-white transition-all duration-300 cursor-pointer">
-                <FaXTwitter className="2xl" />
-              </li>
-              <li className="border rounded border-gray-300 p-1 hover:bg-blue-800 hover:text-white transition-all duration-300 cursor-pointer">
-                <FaFacebookF className="2xl" />
-              </li>
-              <li className="border rounded border-gray-300 p-1 hover:bg-gradient-to-r from-[#ff401e] to-[#fb0f0f] hover:text-white transition-all duration-300 cursor-pointer">
-                <FaInstagram className="2xl" />
-              </li>
-              <li className="border rounded border-gray-300 p-1 hover:bg-red-600 hover:text-white transition-all duration-300 cursor-pointer">
-                <IoLogoYoutube className="2xl" />
-              </li>
-            </ul>
-            <p className="font-semibold text-gray-700 mt-4 text-sm">
-              RelCube India Pvt. Ltd.{" "}
-            </p>
-            <p className="font-semibold text-gray-600 text-[13px]">
-              {" "}
-              CIN : U52609UP2017PTC094858{" "}
-            </p>
-            <p className="text-gray-500 text-sm mt-2">
-              Basement & 1st Floor,
-              <br /> A-53, Sector-8,
-              <br /> Noida - 201301, Uttar Pradesh, India
-            </p>
-          </div>
-          <div className="">
-            <p className="font-semibold mb-6 text-sm text-gray-900 tracking-wide">
-              Services
-            </p>
+        <giv className="grid grid-cols-5 gap-10">
+          <div>
+            <p className="font-bold px-1 text-sm mb-2">Services</p>
             <ul>
-              <li className="text-sm text-gray-600 tracking-wide py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                {" "}
-                Buy Phone
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Buy Phone
+                </Link>
               </li>
-              <li className="text-gray-600 tracking-wide text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                {" "}
-                Buy Laptops
+              <li className="p-1">
+                <Link
+                  href="/profile"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  {" "}
+                  Buy Laptop
+                </Link>
               </li>
-              <li className="text-gray-600 tracking-wide text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                {" "}
-                Buy Desktops{" "}
+              <li className="p-1">
+                <Link
+                  href="/tickets"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Buy Tablets
+                </Link>
               </li>
-              <li className="text-gray-600 tracking-wide text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                {" "}
-                Buy LCD/LED/TFT Monitors{" "}
+              <li className="p-1">
+                <Link
+                  href="address"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Buy Other Gadgets
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                {" "}
-                Buy Accessories
+              <li className="p-1">
+                <Link
+                  href=" "
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Buy Accessories
+                </Link>
               </li>
             </ul>
           </div>
-          <div className="">
-            <p className="font-semibold mb-6 text-sm text-gray-900 tracking-wide">
-              Company
-            </p>
+          <div>
+            <p className="font-bold px-1 text-sm mb-2"> Company</p>
             <ul>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                About Us
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  About Us
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Careers
-              </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Articles
-              </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Press Releases
-              </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Corporate Information
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600  text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Careers
+                </Link>
               </li>
             </ul>
           </div>
-          <div className="">
-            <p className="font-semibold mb-6 text-sm text-gray-900 tracking-wide">
-              Help & Support
-            </p>
+          <div>
+            <p className="font-bold px-1 text-sm mb-2"> Help & Support</p>
             <ul>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                FAQs
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  My Profile
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Contact Us
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Contact Us
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Warranty Policy
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Track Order
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Refund Policy
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  My Cart
+                </Link>
+              </li>
+              <li className="p-1">
+                <Link
+                  href="/order"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  My Wishlist
+                </Link>
               </li>
             </ul>
           </div>
-          <div className="">
-            <p className="font-semibold mb-6 text-sm text-gray-900 tracking-wide">
-              More Info
-            </p>
+          <div>
+            <p className="font-bold px-1 text-sm mb-2"> More Info</p>
             <ul>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                <Link href={"/terms-and-conditions"}>Terms & Conditions</Link>
+              <li className="p-1">
+                <Link
+                  href="terms-and-conditions"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Terms & Conditions
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                <Link href={"/privacy-policy"}>Privacy Policy</Link>
+
+              <li className="p-1">
+                <Link
+                  href="terms-of-use"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Terms of Use
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                <Link href={"/terms-of-use"}>Terms of Use</Link>
+
+              <li className="p-1">
+                <Link
+                  href="why-refurbished"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Why Refurbished?
+                </Link>
               </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                <Link href={"/e-waste-policy"}>E-Waste Policy</Link>
-              </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                <Link href={"/cookie-policy"}>Cookie Policy</Link>
-              </li>
-              <li className="text-gray-500 font-medium text-sm py-2 hover:text-orange-600 transition-all duration-300 cursor-pointer">
-                Why Refurbished?
+              <li className="p-1">
+                <Link
+                  href="faqs"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Faqs
+                </Link>
               </li>
             </ul>
           </div>
-        </div>
+          <div>
+            <p className="font-bold px-1 text-sm mb-2">Policy</p>
+            <ul>
+              <li className="p-1">
+                <Link
+                  href="privacy-policy"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li className="p-1">
+                <Link
+                  href="warranty-policy"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Warranty Policy
+                </Link>
+              </li>
+              <li className="p-1">
+                <Link
+                  href="refund-policy"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Refund Policy
+                </Link>
+              </li>
+
+              <li className="p-1">
+                <Link
+                  href="e-waste-policy"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  E-Waste Policy
+                </Link>
+              </li>
+              <li className="p-1">
+                <Link
+                  href="cookie-policy"
+                  className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
+                >
+                  Cookie Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </giv>
       </div>
     </footer>
   );

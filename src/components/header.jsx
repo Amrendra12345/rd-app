@@ -102,6 +102,49 @@ const Header = () => {
                 style={{ width: "85%" }}
               />
             </Link>
+            <ul className="flex justify-end gap-4 items-center">
+              <li>
+                {" "}
+                <Link
+                  href={""}
+                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
+                >
+                  Laptops
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={""}
+                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
+                >
+                  Mobile
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={""}
+                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
+                >
+                  Tablets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={""}
+                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
+                >
+                  Gadgets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={""}
+                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
+                >
+                  Accessories
+                </Link>
+              </li>
+            </ul>
             <ul className="flex justify-end gap-8 items-center">
               {!auth.currentUser ? (
                 <li
@@ -132,7 +175,7 @@ const Header = () => {
                     className="flex justify-end items-center gap-2 text-gray-900 relative text-[14px]"
                     onClick={handlerDropdown}
                   >
-                    <span>{party?.party_name} </span> <BsChevronDown />
+                    <span>{auth.currentUser.fullname} </span> <BsChevronDown />
                     {isActive && (
                       <div className="absolute top-[135%] right-0 flex w-40 border border-gray-200 shadow-xl z-20 bg-white rounded">
                         <ul className="w-full">

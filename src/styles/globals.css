@@ -290,3 +290,9 @@
     @apply mb-3;
   }
 }
+.slick-slide .brand-logo {
+  filter: grayscale(100%);
+}
+.slick-current .brand-logo {
+  filter: grayscale(0%);
+}
