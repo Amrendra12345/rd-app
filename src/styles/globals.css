@@ -296,3 +296,12 @@
 .slick-current .brand-logo {
   filter: grayscale(0%);
 }
+.slick-current .content-slider {
+  @apply border-teal-700 shadow-lg;
+}
+.slick-current .title {
+  @apply text-red-700;
+}
+.slick-current .subTitle {
+  @apply text-blue-800;
+}

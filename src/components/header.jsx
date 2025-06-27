@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,60 +91,69 @@ const Header = () => {
       <header className={`${stickyClass} py-1`}>
         <div className="container">
           <nav className="flex justify-between items-center">
-            <Link href={"/"}>
-              <Image
-                src={"/img/reown_logo_sample.png"}
-                className="img-fluid"
-                width={260}
-                height={40}
-                alt="reown-logo"
-                priority
-                style={{ width: "85%" }}
+            <div className="flex items-center gap-2">
+              <Link href={"/"}>
+                <Image
+                  src={"/img/reown_logo_sample.png"}
+                  className="img-fluid"
+                  width={260}
+                  height={40}
+                  alt="reown-logo"
+                  priority
+                  style={{ width: "85%" }}
+                />
+              </Link>
+              <ul className="flex justify-end gap-1 items-center">
+                <li>
+                  <Link
+                    href={""}
+                    className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-3"
+                  >
+                    Laptops
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={""}
+                    className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-3"
+                  >
+                    Mobile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={""}
+                    className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-3"
+                  >
+                    Tablets
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={""}
+                    className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-3"
+                  >
+                    Gadgets
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={""}
+                    className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-3"
+                  >
+                    Accessories
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="form-groups w-[250px] relative">
+              <input
+                type="text"
+                className="form-control w-[250px] h-[40px] border border-gray-300 rounded px-3 focus:outline-none focus:border-teal-500"
+                placeholder="Search for products..."
               />
-            </Link>
-            <ul className="flex justify-end gap-4 items-center">
-              <li>
-                {" "}
-                <Link
-                  href={""}
-                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
-                >
-                  Laptops
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={""}
-                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
-                >
-                  Mobile
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={""}
-                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
-                >
-                  Tablets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={""}
-                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
-                >
-                  Gadgets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={""}
-                  className="text-sm font-semibold text-gray-800 transition-all duration-300 hover:text-blue-700 uppercase py-2 px-4"
-                >
-                  Accessories
-                </Link>
-              </li>
-            </ul>
+              <BsSearch className="absolute top-[20px] right-3 transform -translate-y-1/2 text-teal-600 text-lg cursor-pointer" />
+            </div>
             <ul className="flex justify-end gap-8 items-center">
               {!auth.currentUser ? (
                 <li
