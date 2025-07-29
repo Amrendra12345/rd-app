@@ -42,9 +42,9 @@ const Wishlist = () => {
   return (
     <>
       <Breadcrumd pageName="wishlist" />
-      <div className="container px-20 mt-14 mb-10">
+      <div className="container md:px-20 mt-14 mb-10">
         <div className="border bg-gray-100 p-4 rounded">
-          <div className="flex justify-between items-center border-gray-300 border-b pb-2">
+          <div className="flex justify-between items-center flex-col md:flex-row border-gray-300 border-b pb-2">
             <p>My wishlist:</p>
           </div>
           {wishlist.wishlistItemsData.length > 1 &&

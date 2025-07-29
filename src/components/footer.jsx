@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="w-full py-10 bg-gray-100 mt-auto">
       <div className="container">
-        <giv className="grid grid-cols-5 gap-10">
+        <giv className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div>
             <p className="font-bold px-1 text-sm mb-2">Services</p>
             <ul>
@@ -57,7 +57,7 @@ const Footer = () => {
             <ul>
               <li className="p-1">
                 <Link
-                  href="/order"
+                  href="/about-us"
                   className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
                 >
                   About Us
@@ -78,7 +78,7 @@ const Footer = () => {
             <ul>
               <li className="p-1">
                 <Link
-                  href="/order"
+                  href="/profile"
                   className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
                 >
                   My Profile
@@ -86,7 +86,7 @@ const Footer = () => {
               </li>
               <li className="p-1">
                 <Link
-                  href="/order"
+                  href="/contact-us"
                   className="text-gray-600 text-sm transition-all duration-500 hover:text-blue-800"
                 >
                   Contact Us

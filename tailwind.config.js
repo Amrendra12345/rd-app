@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     screens: {
-      xs: "420px",
+      xs: "480px",
       sm: "576px",
       md: "768px",
       lg: "992px",
@@ -18,6 +18,8 @@ module.exports = {
     extend: {
       animation: {
         text: "text 5s ease infinite",
+        "fade-in": "fadeIn 0.2s ease-out forwards",
+        "fade-out": "fadeOut 0.2s ease-in forwards",
       },
       keyframes: {
         text: {

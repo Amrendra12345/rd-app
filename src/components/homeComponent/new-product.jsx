@@ -45,14 +45,14 @@ const data = [
 const NewProduct = () => {
   return (
     <div className="container">
-      <div className="grid grid-cols-4 gap-8 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
         {data.map((product, index) => {
           return (
             <div className="product-img" key={index}>
-              <div className="relative p-4 bg-gray-100 h-[275px] mb-24">
+              <div className="relative p-1 md:p-4 bg-gray-100 h-[275px] md-8 lg:mb-24">
                 <Link href={`/product`}>
                   <Tooltip message="Go To Product Page">
-                    <div className="w-[295px] h-[230px] relative">
+                    <div className="w-[295px] h-[230px] relative p-2 md:p-0">
                       <Image
                         src={product.url}
                         sizes="30vw"
@@ -74,12 +74,12 @@ const NewProduct = () => {
                     </div>
                   </Tooltip>
                 </Link>
-                <div className="flex justify-center items-center gap-2 mb-4 mt-12">
-                  <FaStar className="text-gray-200" />
-                  <FaStar className="text-gray-200" />
-                  <FaStar className="text-gray-200" />
-                  <FaStar className="text-gray-200" />
-                  <FaStar className="text-gray-200" />
+                <div className="flex justify-center items-center gap-2 mb-4 mt-1 md:mt-12">
+                  <FaStar className="md:text-gray-200 text-gray-400" />
+                  <FaStar className="md:text-gray-200 text-gray-400" />
+                  <FaStar className="md:text-gray-200 text-gray-400" />
+                  <FaStar className="md:text-gray-200 text-gray-400" />
+                  <FaStar className="md:text-gray-200 text-gray-400" />
                 </div>
                 <div className="flex justify-center items-center flex-col gap-2">
                   <p className="text-[16px] text-gray-600 text-wrap overflow-hidden text-ellipsis"></p>

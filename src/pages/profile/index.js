@@ -72,8 +72,8 @@ const Profile = () => {
     <>
       <Breadcrumd pageName="Profile" />
       <div className="container my-14">
-        <div className="flex w-full gap-5">
-          <div className="w-[375px] border border-gray-400 rounded pt-8 pb-1 flex-shrink-0">
+        <div className="flex w-full gap-5 md:flex-row flex-col justify-start items-start">
+          <div className="w-full md:w-[375px] border border-gray-400 rounded pt-8 pb-1 flex-shrink-0">
             <AuthAside />
           </div>
           <div className="w-full border py-6">
@@ -186,7 +186,7 @@ const Profile = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="flex justify-start items-center py-2 gap-16">
+                  <div className="flex justify-start items-center py-2 gap-16 ">
                     <button
                       type="submit"
                       className="bg-teal-700 text-white uppercase rounded py-3 px-8"

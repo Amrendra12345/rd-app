@@ -7,7 +7,7 @@ const Breadcrumd = (prop) => {
       className="flex items-center justify-start w-full h-28 bg-no-repeat bg-center  bg-cover before:content-[''] before:absolute before:bg-black/30 before:h-28 before:w-full"
       style={{ backgroundImage: `url("/img/breadcrumb.jpg" )` }}
     >
-      <div className="container">
+      <div className="container relative z-40">
         <ul className="flex justify-start items-center gap-4">
           <li>
             <Link href={"/"} className="text-white text-xl">

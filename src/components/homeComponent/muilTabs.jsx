@@ -8,12 +8,12 @@ const MuilTabs = () => {
   const [value, setValue] = useState(0);
   return (
     <>
-      <section className="featureProduct pt-24 pb-10">
+      <section className="featureProduct pb-10">
         <div className="container">
           <h3 className="text-2xl font-bold uppercase text-center mb-0">
             Feature Product
           </h3>
-          <div className="text-center mb-4 flex justify-center">
+          <div className="text-center mb-4 flex justify-center flex-wrap">
             <Tabs
               value={value}
               onChange={(e, v) => setValue(v)}

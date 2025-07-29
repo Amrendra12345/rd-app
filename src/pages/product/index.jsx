@@ -22,7 +22,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsCart2, BsChevronLeft, BsChevronRight, BsEye } from "react-icons/bs";
-import { FaRupeeSign, FaStar } from "react-icons/fa";
+import { FaRupeeSign, FaSlidersH, FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +34,7 @@ const ProductList = (props) => {
   const router = useRouter();
   const [isActive, setIsctive] = useState(false);
   const [isCartAdded, setIsCartAdded] = useState(false);
+  const [isAsideFilter, setIsAsideFilter] = useState(false);
   const cart = useSelector(getCartData);
   const auth = useSelector(getAuthData);
   const wishlist = useSelector(getWishlistData);
@@ -151,22 +152,44 @@ const ProductList = (props) => {
     );
   };
   const applyProcessorFilters = () => {};
+  const handleFilterClick = () => {
+    setIsAsideFilter(!isAsideFilter);
+    //document.body.style.overflow = isAsideFilter ? "auto" : "hidden";
+  };
   return (
     <>
       <Breadcrumd />
-      <div className="container pt-16">
-        <div className="flex justify-start items-start gap-8">
-          <div className="w-[400px]">
+      <div className="container pt-16 p-4 overflow-x-hidden">
+        <div className="flex justify-start items-start gap-8 relative">
+          <div
+            className={`w-[300px] absolute left-0 top-0 transition-all duration-300 md:static ${
+              isAsideFilter ? "left-0 z-50" : "left-[-200%]"
+            }`}
+          >
             <AsideFilter
+              handleFilterClick={handleFilterClick}
               applyBrandFilters={applyBrandFilters}
               selectedBrands={filteredBrands}
               applyProcessorFilters={applyProcessorFilters}
               selectedProcessors={filteredProcessors}
             />
           </div>
-          <div className="w-full">
-            <h1 className="text-xl font-semibold">Product </h1>
-            <div className="mt-4 grid grid-cols-4 gap-8">
+          <div
+            className={`${
+              isAsideFilter ? "w-full ml-0" : "w-full ml-0"
+            }  transition-all duration-300`}
+          >
+            <div className="flex justify-between items-center">
+              <button
+                onClick={handleFilterClick}
+                type="button"
+                className="md:hidden text-md p-2 rounded w-24 bg-green-600 text-white flex justify-between items-center hover:bg-green-700 transition-all duration-300 "
+              >
+                Filters <FaSlidersH />
+              </button>
+              <h1 className="text-xl font-semibold">Product </h1>
+            </div>
+            <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {Array.isArray(products.models) &&
                 products.models.map((el) => {
                   return (

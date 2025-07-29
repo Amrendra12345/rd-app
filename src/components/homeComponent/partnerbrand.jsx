@@ -6,18 +6,40 @@ import Image from "next/image";
 
 const PartnerBrand = () => {
   var settings = {
-    dots: false,
-    infinite: true,
-    className: "center",
-    centerMode: true,
-    speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    initialSlide: 0,
     autoplay: true,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
+    focusOnSelect: true,
+    arrows: true,
+    centerMode: true,
+    speed: 800,
+    autoplaySpeed: 3500,
+    centerPadding: "0px",
+    dots: false,
     lazyLoad: true,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          arrows: true,
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          arrows: false,
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 350,
+        settings: {
+          arrows: false,
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
   const brandLogos = [
     {
@@ -115,7 +137,7 @@ const PartnerBrand = () => {
         <Slider {...settings}>
           {brandLogos.map((logo, index) => (
             <div key={index} className="flex justify-center items-center p-2">
-              <div className="p-4 border border-gray-200 rounded content-slider">
+              <div className="p-4 border border-gray-200 rounded content-slider min-w-[175px] max-w-[200px]">
                 <div className="w-full flex justify-center items-center flex-col">
                   <Image
                     src={logo.src}

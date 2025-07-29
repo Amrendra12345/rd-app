@@ -50,11 +50,11 @@ const ProductList = (props) => {
 
   return (
     <>
-      <div className="container mt-4">
-        <div className="flex justify-start gap-10">
-          <div className="w-2/5  min-h-96  flex-shrink-0 relative">
+      <div className="container px-4 md:px-0 mt-4">
+        <div className="flex flex-col md:flex-row justify-start gap-10">
+          <div className="w-full lg:w-2/5 min-h-72 md:min-h-96  flex-shrink-0 relative">
             <div
-              className=" bg-gray-100 p-4 rounded  border-gray-200 w-full border min-h-96"
+              className="flex bg-gray-100 p-4 rounded  border-gray-200 w-full border min-h-72 md:min-h-96"
               onClick={() => setOpen(true)}
             >
               <Image
@@ -122,13 +122,13 @@ const ProductList = (props) => {
                 {props.productDetails.product.sell_price}.00{" "}
               </span>
             </p>
-            <div className="mt-2 w-1/2">
+            <div className="mt-2 w-3/4 md:w-1/2">
               <p className="text-gray-400 mb-2">
                 Enter pincode to see product availablity
               </p>
               <PincodeCheck pincodeCheckCallback={pincodeCheckCallback} />
             </div>
-            <div className="mt-2 w-1/2 flex justify-between items-center">
+            <div className="mt-2 w-full md:w-1/2 flex justify-between items-center">
               <p className="mt-1 flex justify-start items-center gap-4">
                 <PiVanThin className="text-blue-800 text-3xl" />
                 <span className="text-gray-400">Free delivery</span>

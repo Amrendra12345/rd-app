@@ -1,12 +1,13 @@
 import { getFilters } from "@/servers/lib-reown/lib";
 import { useEffect, useState } from "react";
-import { BsLaptop } from "react-icons/bs";
+import { BsLaptop, BsXLg } from "react-icons/bs";
 import { FaSlidersH } from "react-icons/fa";
 import { SkeletonDemo } from "./SkeletonDemo";
 
 const AsideFilter = (props) => {
   const [filters, setFilters] = useState([]);
   const [isLoding, setIsLoding] = useState(false);
+  const [isAsideFilter, setIsAsideFilter] = useState(false);
   useEffect(() => {
     const getFiltersResp = async () => {
       setIsLoding(true);
@@ -24,19 +25,26 @@ const AsideFilter = (props) => {
   const handleProcessorChange = (event, value) => {
     props.applyProcessorFilters(value, event.target.checked ? "add" : "remove");
   };
+  console.log(props.isAsideFilter, "");
   return (
     <>
-      <SkeletonDemo />
       <div className="w-full bg-gray-100 rounded relative">
         <div className="px-6 py-4 border-b border-gray-300">
-          <p className="flex justify-between items-center">
+          <button
+            onClick={() => props.handleFilterClick(false)}
+            type="button"
+            className="flex justify-between items-center w-full"
+          >
             <span className="font-semibold text-gray-700 uppercase">
               Filter
             </span>
-            <span>
+            <span className="hidden md:block">
               <FaSlidersH />
             </span>
-          </p>
+            <span className="md:hidden hover:text-red-600 text-xl text-gray-700">
+              <BsXLg />
+            </span>
+          </button>
         </div>
         <div className="px-6 py-4 relative asideBrand">
           <p className="flex justify-between items-center">

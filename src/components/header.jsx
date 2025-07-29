@@ -17,9 +17,12 @@ import { FiHeart } from "react-icons/fi";
 import { wishlistActions } from "@/redux/wishlist/wishlist.reducer";
 import { getWishlistData } from "@/redux/wishlist/wishlist.selector";
 import { getparty } from "@/redux/profile/profile.selector";
+import { FaBars } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
 
 const Header = () => {
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [stickyClass, setStickyClass] = useState("relative");
   const auth = useSelector(getAuthData);
@@ -90,17 +93,130 @@ const Header = () => {
     <>
       <header className={`${stickyClass} py-1`}>
         <div className="container">
-          <nav className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <Link href={"/"}>
+          <nav className="flex justify-between items-center relative">
+            <div className="flex gap-1">
+              <button
+                type="button"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="md:hidden mr-2 border border-gray-100 p-1 bg-gray-100 rounded"
+              >
+                {menuOpen ? (
+                  <MdClose className="text-2xl text-rose-600" />
+                ) : (
+                  <FaBars className="text-2xl" />
+                )}
+              </button>
+              <Link href={"/"} className="relative">
                 <Image
-                  src={"/img/reown_logo_sample.png"}
-                  className="img-fluid"
+                  src={"/reown-log.png"}
+                  className="logo_img"
                   width={260}
-                  height={40}
+                  height={30}
                   alt="reown-logo"
                   priority
-                  style={{ width: "85%" }}
+                />
+              </Link>
+            </div>
+            <div
+              className={`absolute top-10 left-0 z-40 bg-white w-full p-4 md:relative md:w-auto md:top-0 md:bg-white md:shadow-none transition-all duration-300 ${
+                menuOpen ? "block" : "hidden"
+              }`}
+            >
+              <ul className="flex flex-col md:flex-row gap-1">
+                {["Laptops", "Mobile", "Tablets", "Gadgets", "Accessories"].map(
+                  (item) => (
+                    <li key={item}>
+                      <Link
+                        href=""
+                        className="text-sm font-semibold text-gray-800 transition hover:text-blue-700 uppercase py-2 md:px-3"
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+            <ul className="flex justify-end gap-4 md:gap-8 items-center mt-5 md:mt-1">
+              {!auth.currentUser ? (
+                <li
+                  className="bg-green-700 cursor-pointer hover:bg-teal-700 transition-all delay-300 rounded py-[6px] px-4 uppercase text-white"
+                  onClick={() => dispatch(authActions.openSidebar("login"))}
+                >
+                  Login
+                </li>
+              ) : (
+                <>
+                  <li onClick={handleCartShow}>
+                    <p className="text-gray-900 text-xl flex gap-2 justify-center items-center relative">
+                      <span className="absolute top-[-14px] left-[-16px] w-[18px] h-[18px] shadow-md border border-red-600 rounded-full bg-red-500 text-white text-[12px] flex justify-center items-center">
+                        {cart.cartCount}
+                      </span>
+                      <PiShoppingCartSimpleLight />
+                    </p>
+                  </li>
+                  <li onClick={handleWishlistPage}>
+                    <p className="text-gray-900 text-xl flex gap-2 justify-center items-center relative">
+                      <span className="absolute top-[-14px] right-[-13px] w-[18px] h-[18px] shadow-md border border-teal-600 rounded-full bg-teal-500 text-white text-[12px] flex justify-center items-center">
+                        {wishlist.wishlistCount}
+                      </span>
+                      <FiHeart />
+                    </p>
+                  </li>
+                  <li
+                    className="flex justify-end items-center gap-1 text-gray-900 relative text-[14px]"
+                    onClick={handlerDropdown}
+                  >
+                    <span
+                      className="inline-block max-w-[80px] truncate"
+                      title={auth.currentUser.fullname}
+                    >
+                      {auth.currentUser.fullname}
+                    </span>
+                    <BsChevronDown />
+                    {isActive && (
+                      <div className="absolute top-[135%] right-0 flex w-40 border border-gray-200 shadow-xl z-20 bg-white rounded">
+                        <ul className="w-full">
+                          <li className="font-normal border-b border-b-gray-200 px-4 py-2 hover:bg-gray-100 transition-all">
+                            <Link href={"/profile"} className="block">
+                              My Profile
+                            </Link>
+                          </li>
+                          <li className="font-normal border-b border-b-gray-200 px-4 py-2 hover:bg-gray-100 transition-all">
+                            <Link href={"/orders"} className="block">
+                              My Order
+                            </Link>
+                          </li>
+                          <li
+                            className="font-normal border-b border-b-gray-200 px-4 py-2 hover:bg-gray-100 transition-all"
+                            onClick={handlerLogout}
+                          >
+                            Logout
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      {/* <header className={`${stickyClass} py-1`}>
+        <div className="container">
+          <nav className="flex justify-between items-center flex-col md:flex-row">
+            <div className="flex items-center gap-2 flex-col md:flex-row">
+              <Link href={"/"}>
+                <Image
+                  src={"/reown-log.png"}
+                  className="img-fluid"
+                  width={260}
+                  height={30}
+                  alt="reown-logo"
+                  priority
+                  style={{ width: "100%", height: "auto" }}
                 />
               </Link>
               <ul className="flex justify-end gap-1 items-center">
@@ -146,6 +262,7 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+
             <div className="form-groups w-[250px] relative">
               <input
                 type="text"
@@ -157,7 +274,7 @@ const Header = () => {
             <ul className="flex justify-end gap-8 items-center">
               {!auth.currentUser ? (
                 <li
-                  className="bg-teal-600 cursor-pointer hover:bg-teal-700 transition-all delay-300 rounded py-[6px] px-4 uppercase text-white"
+                  className="bg-green-700 cursor-pointer hover:bg-teal-700 transition-all delay-300 rounded py-[6px] px-4 uppercase text-white"
                   onClick={() => dispatch(authActions.openSidebar("login"))}
                 >
                   Login
@@ -213,7 +330,7 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-      </header>
+      </header> */}
       {displayLoginSidebar()}
       {isCartSidebar && (
         <CartSidebar cartOpen={handleCartOpen} cartClose={handleCartClose} />

@@ -44,7 +44,7 @@ const PincodeCheck = ({ pincodeCheckCallback }) => {
   };
 
   return (
-    <div className="pincode relative w-full">
+    <div className="pincode relative w-3/5 md:1/2">
       <input
         type="text"
         required

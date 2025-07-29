@@ -7,12 +7,12 @@ const Orders = () => {
   return (
     <>
       <Breadcrumd pageName={"Order"} />
-      <div className="container my-14">
-        <div className="flex gap-4 items-start relative">
-          <div className="w-[375px] flex-shrink-0 p-4 border rounded">
+      <div className="container my-14 p-4 md:p-0">
+        <div className="flex gap-4 items-start relative flex-col md:flex-row">
+          <div className="w-full md:w-[375px] flex-shrink-0 p-4 border rounded">
             <AuthAside />
           </div>
-          <div className="w-[calc(100%-375px)] p-6 bg-gray-50 rounded pb-20 relative">
+          <div className="w-full md:w-[calc(100%-375px)] p-6 bg-gray-50 rounded pb-20 relative">
             <OrderDetails />
           </div>
         </div>

@@ -2,8 +2,8 @@ import Image from "next/image";
 const OfferProucts = () => {
   return (
     <section className="offser">
-      <div className="container">
-        <div className="grid grid-cols-4 gap-14 w-full">
+      <div className="container p-6 md:p-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-14 w-full">
           <div className="img-thumani">
             <Image
               src={"/img/laptop-adv3.jpg"}

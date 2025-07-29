@@ -45,11 +45,11 @@ const data = [
 const BestProduct = () => {
   return (
     <div className="container">
-      <div className="grid grid-cols-4 gap-8 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
         {data.map((product, index) => {
           return (
             <div className="product-img" key={index}>
-              <div className="relative p-4 bg-gray-100 h-[275px] mb-24">
+              <div className="relative p-4 bg-gray-100 h-[275px] mb-8 md:mb-24">
                 <Link href={`/product`}>
                   <Tooltip message="Go To Product Page">
                     <div className="w-[295px] h-[230px] relative">
