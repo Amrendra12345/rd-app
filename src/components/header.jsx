@@ -91,7 +91,7 @@ const Header = () => {
   };
   return (
     <>
-      <header className={`${stickyClass} py-1`}>
+      <header className={`${stickyClass} py-1 bg-[#f9f8f8]`}>
         <div className="container">
           <nav className="flex justify-between items-center relative">
             <div className="flex gap-1">

@@ -9,6 +9,9 @@
   .img-fluid {
     @apply w-full h-auto block;
   }
+  img {
+    @apply w-full h-auto block;
+  }
   .container {
     @apply w-full mx-auto;
   }
